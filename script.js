@@ -1,5 +1,33 @@
 // 1. Lấy tên từ Google Sheet thông qua URL Parameter
 // Link gửi khách sẽ có dạng: index.html?name=Anh+Hoang
+window.addEventListener('DOMContentLoaded', () => {
+    // 1. Tự động thêm class reveal (Bạn đã có)
+    const autoRevealElements = document.querySelectorAll('.card-content, .hero-img, .details-text, .countdown-container, .mini-calendar');
+    autoRevealElements.forEach((el) => {
+        el.classList.add('reveal');
+    });
+
+    // 2. XỬ LÝ LẤY TÊN KHÁCH MỜI TỪ URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('name'); // Lấy giá trị sau ?name=
+
+    if (guestName) {
+        // Chuyển đổi dấu cộng (+) hoặc %20 thành khoảng trắng cho dễ đọc
+        const formattedName = decodeURIComponent(guestName).replace(/\+/g, ' ');
+
+        // Đổ tên vào thẻ H1 có id="guest-name"
+        const nameDisplay = document.getElementById('guest-name');
+        if (nameDisplay) {
+            nameDisplay.innerText = formattedName;
+        }
+
+        // Nếu bạn có ô input nhập tên ở cuối trang (phần RSVP), nó cũng tự điền luôn
+        const nameInput = document.getElementById('input-name');
+        if (nameInput) {
+            nameInput.value = formattedName;
+        }
+    }
+});
 // Tự động thêm class reveal cho các khối nội dung khi trang vừa load
 window.addEventListener('DOMContentLoaded', () => {
     // Tìm tất cả các khối nội dung chính mà bạn muốn nó chuyển động
