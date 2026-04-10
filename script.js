@@ -236,3 +236,29 @@ window.addEventListener('scroll', handleScrollReveal);
 
 // Gọi lần đầu để hiện các khối ở trang đầu tiên ngay khi mở web
 handleScrollReveal();
+// nhạc
+const bgMusic = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-control');
+const musicIcon = document.getElementById('music-icon');
+
+// Hàm để bật/tắt nhạc
+// Hàm kích hoạt nhạc khi khách tương tác
+function enableAutoPlay() {
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic) {
+        bgMusic.play().then(() => {
+            // Nếu phát nhạc thành công, gỡ bỏ các sự kiện lắng nghe để tránh chạy lại
+            document.removeEventListener('touchstart', enableAutoPlay);
+            document.removeEventListener('scroll', enableAutoPlay);
+            document.removeEventListener('click', enableAutoPlay);
+            console.log("Nhạc đã bắt đầu phát!");
+        }).catch(error => {
+            console.log("Trình duyệt vẫn chưa cho phát nhạc: ", error);
+        });
+    }
+}
+
+// Lắng nghe các hành động vuốt (touchstart), cuộn (scroll) hoặc bấm (click)
+document.addEventListener('touchstart', enableAutoPlay);
+document.addEventListener('scroll', enableAutoPlay);
+document.addEventListener('click', enableAutoPlay);
