@@ -199,7 +199,7 @@ window.addEventListener("scroll", reveal);
 reveal();
 function createHeart() {
     const heart = document.createElement("div");
-    heart.classList.add("heart");
+    heart.classList.add("floating-heart");
     heart.innerHTML = "❤";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.animationDuration = Math.random() * 5 + 5 + "s";
@@ -262,3 +262,54 @@ function enableAutoPlay() {
 document.addEventListener('touchstart', enableAutoPlay);
 document.addEventListener('scroll', enableAutoPlay);
 document.addEventListener('click', enableAutoPlay);
+// mở cửa
+function openDoor() {
+    const overlay = document.getElementById('door-overlay');
+    const bgMusic = document.getElementById('bg-music');
+
+    overlay.classList.add('door-open');
+
+    if (bgMusic) {
+        bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
+    }
+
+    // Đợi cửa mở xong thì mới kích hoạt hiệu ứng tim bay
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        
+        // Gọi hàm tạo tim bay ở đây (thay bằng tên hàm tim bay của bạn)
+        if (typeof createHeart === "function") {
+            createHeart();
+        }
+    }, 1200);
+}
+
+// Gán sự kiện click vào ảnh QR khi trang tải xong
+window.addEventListener('DOMContentLoaded', (event) => {
+    const qrImg = document.querySelector('.qr-img');
+    if (qrImg) {
+        qrImg.addEventListener('click', toggleZoomQR);
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.gallery img').forEach(img => {
+        img.addEventListener('click', () => {
+            const existing = document.querySelector('#image-overlay');
+            if (existing) existing.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'image-overlay';
+            overlay.innerHTML = `<img src="${img.src}" alt="${img.alt || 'Ảnh cưới'}" class="zoomed-img">`;
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', () => overlay.remove());
+            document.addEventListener('keydown', function handleEsc(event) {
+                if (event.key === 'Escape') {
+                    overlay.remove();
+                    document.removeEventListener('keydown', handleEsc);
+                }
+            });
+        });
+    });
+});

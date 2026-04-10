@@ -14,8 +14,9 @@ body, html {
 
 .page {
    
-    min-height: 80vh;
+    min-height: 100vh;
     width: 100%;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Căn giữa theo chiều dọc */
@@ -23,6 +24,11 @@ body, html {
     padding: 30px;
     box-sizing: border-box;
     text-align: center;
+}
+
+.page#album {
+    min-height: auto;
+    padding: 20px 20px 10px;
 }
 
 .card-content {
@@ -155,16 +161,28 @@ body, html {
 
 .gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 220px;
     gap: 10px;
+    width: 100%;
+    align-items: stretch;
 }
 
 .gallery img {
-    max-height: 70vh; /* Giới hạn ảnh thông tin lễ/tiệc */
     width: 100%;
-    border-radius: 5px;
-    transition: 0.3s;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
 }
+
+.gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
 .map-wrapper {
     width: 100%;
     margin-bottom: 20px; /* Tạo khoảng cách dưới bản đồ */
@@ -354,7 +372,7 @@ body, html {
 }
 /* Container chính cho phần tiệc */
 .party-info {
-    padding: 15px !important;
+    padding: 20px !important;
     line-height: 1.2; /* Thu hẹp khoảng cách dòng tổng thể */
 }
 
@@ -428,27 +446,40 @@ body, html {
     opacity: 1;
     transform: translateY(0);
 }
-.heart {
+.floating-heart {
     position: fixed;
-    top: -2vh; /* Xuất hiện từ phía trên */
-    color: #ff4d6d; /* Màu đỏ hồng rõ hơn */
+    top: -2vh;
+    color: #ff4d6d;
     font-size: 25px;
     user-select: none;
     pointer-events: none;
-    z-index: 10000; /* Số cực lớn để đè lên mọi thứ */
-    animation: fall 15s linear forwards;
+    z-index: 10000;
+    animation: fall 15s ease-in-out infinite;
+    will-change: transform, opacity;
 }
 
 @keyframes fall {
-    0% { transform: translateY(-5vh) translateX(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(105vh) translateX(50px) rotate(360deg); opacity: 0; }
+    0% { 
+        transform: translateY(-5vh) translateX(0) rotate(0deg); 
+        opacity: 0; /* Bắt đầu tàng hình */
+    }
+    10% {
+        opacity: 1; /* Hiện rõ dần khi bắt đầu rơi */
+    }
+    90% {
+        opacity: 1; /* Vẫn hiện rõ */
+    }
+    100% { 
+        transform: translateY(105vh) translateX(50px) rotate(360deg); 
+        opacity: 0; /* Biến mất khi chạm đáy */
+    }
 }
 /* chuyển động
 /* Trạng thái mặc định: Ẩn và đẩy xuống dưới một chút */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transition: all 1s ease-out;
     visibility: hidden; /* Tránh việc bấm nhầm vào nút đang ẩn */
 }
 
@@ -482,10 +513,149 @@ body, html {
     transform: translateX(0);
 }
 /* Nếu trong một khối có nhiều thẻ p, chúng sẽ hiện lần lượt */
-.reveal p:nth-child(1) { transition-delay: 0.2s; }
-.reveal p:nth-child(2) { transition-delay: 0.4s; }
-.reveal p:nth-child(3) { transition-delay: 0.6s; }
-.reveal p:nth-child(4) { transition-delay: 0.8s; }
+.reveal p:nth-child(1) { transition-delay: 0.5s; }
+.reveal p:nth-child(2) { transition-delay: 1.0s; }
+.reveal p:nth-child(3) { transition-delay: 1.5s; }
+.reveal p:nth-child(4) { transition-delay: 2.0s; }
 
 /* Trễ cho các nút bấm */
 .btn, .gift-btn { transition-delay: 0.5s; }
+/* cửa */
+#door-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.door {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #fdf5f5; /* Màu nền cánh cửa (hơi trắng hồng) */
+    transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+    display: flex;
+    align-items: center;
+    border: 2px solid #e0c3fc; /* Viền cửa cho sang */
+}
+
+.door-left { left: 0; }
+.door-right { right: 0; }
+
+/* Nội dung ở giữa cánh cửa */
+.door-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    transition: opacity 0.5s;
+}
+
+.envelope {
+    color: #d4a373;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+}
+
+.heart {
+    font-size: 40px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Khi mở cửa - Class này sẽ được thêm bằng JS */
+.door-open .door-left { transform: translateX(-100%); }
+.door-open .door-right { transform: translateX(100%); }
+.door-open .door-content { opacity: 0; pointer-events: none; }
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.door,
+.door-content {
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.8s ease-out;
+    will-change: transform, opacity;
+}
+
+.floating-heart {
+    position: fixed;
+    top: -2vh;
+    color: #ff4d6d;
+    font-size: 25px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 10000;
+    animation: fall 15s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+.heart {
+    font-size: 40px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-5vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.gallery img {
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+#image-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+    cursor: zoom-out;
+}
+
+#image-overlay .zoomed-img {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 12px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+.page#album .card-content {
+    max-width: 760px;
+    padding: 30px;
+}

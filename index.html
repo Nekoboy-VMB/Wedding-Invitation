@@ -12,7 +12,16 @@
 </head>
 
 <body>
-
+<div id="door-overlay" onclick="openDoor()">
+    <div class="door door-left"></div>
+    <div class="door door-right"></div>
+    <div class="door-content">
+        <div class="envelope">
+            <p>Chạm để mở thiệp</p>
+            <div class="heart">❤️</div>
+        </div>
+    </div>
+</div>
     <audio id="bg-music" loop>
         <source src="wedding-song.mp3" type="audio/mpeg">
     </audio>
@@ -177,12 +186,11 @@
                 </div>
             </div>
             <div class="add-to-calendar">
-    <a href="wedding.ics" class="calendar-btn" style="text-decoration: none; display: inline-block;">
-        📅 Thêm vào lịch điện thoại
-    </a>
-</div>
-    </div>
-    </div>
+                <a href="wedding.ics" class="calendar-btn" style="text-decoration: none; display: inline-block;">
+                    📅 Thêm vào lịch điện thoại
+                </a>
+            </div>
+        </div>
     </section>
 
     <section class="page" id="map">
@@ -255,14 +263,14 @@
 
     <section class="page" id="album">
         <div class="card-content">
-            <h3 class="title">Album Ảnh Cưới</h3>
+            <h1 class="title">Album Ảnh Cưới</h3>
             <div class="gallery">
                 <img src="img/4.png"> <img src="img/5.png"> <img src="img/6.png">
                 <img src="img/7.png"> <img src="img/8.png"> <img src="img/9.png">
                 <img src="img/10.png"> <img src="img/11.png"> <img src="img/12.png">
             </div>
             <footer class="footer-text">
-                "Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!"
+                <h3>"Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!"</p>
             </footer>
         </div>
     </section>
