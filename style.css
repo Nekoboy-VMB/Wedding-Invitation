@@ -542,7 +542,7 @@ body, html {
     transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
     display: flex;
     align-items: center;
-    border: 2px solid #e0c3fc; /* Viền cửa cho sang */
+    border: 0px solid #fdf5f5; /* Viền cửa cho sang */
 }
 
 .door-left { left: 0; }
