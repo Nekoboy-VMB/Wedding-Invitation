@@ -20,14 +20,14 @@ body, html {
 }
 
 .page {
-    min-height: 100vh;
+    min-height:1px;
     width: 100%;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Căn giữa theo chiều dọc */
     align-items: center;    /* Căn giữa theo chiều ngang */
-    padding: 30px;
+    padding: 50px;
     box-sizing: border-box;
     text-align: center;
     width: 100vw;
@@ -36,7 +36,11 @@ body, html {
 
 .page#album {
     min-height: auto;
-    padding: 20px 20px 10px;
+    padding: 20px;
+}
+
+.page:not(:first-child) {
+    margin-top: -50px;
 }
 
 .card-content {
@@ -54,6 +58,18 @@ body, html {
     font-family: 'Great Vibes', cursive;
     color: var(--primary-red);
     font-size: 2.5rem;
+}
+
+.hero-img,
+.info-img {
+    max-height: 550px;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+    object-fit: scale-down;
+    border-radius: 10px;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
 }
 
 .hero-img {
@@ -172,7 +188,7 @@ body, html {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 220px;
     gap: 10px;
-    width: 100%;
+    width: 80%;
     align-items: stretch;
 }
 
@@ -380,7 +396,7 @@ body, html {
 }
 /* Container chính cho phần tiệc */
 .party-info {
-    padding: 20px !important;
+    padding: 50px !important;
     line-height: 1.2; /* Thu hẹp khoảng cách dòng tổng thể */
 }
 
@@ -664,8 +680,8 @@ body, html {
 }
 
 .page#album .card-content {
-    max-width: 760px;
-    padding: 30px;
+    max-width: 350px;
+    padding: 50px;
 }
 
 @media (max-width: 768px) {
