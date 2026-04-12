@@ -13,12 +13,13 @@
 
 <body>
     <div id="door-overlay" onclick="openDoor()">
+        <div class="butterflies"></div>
         <div class="door door-left"></div>
         <div class="door door-right"></div>
         <div class="door-content">
             <div class="envelope">
-                <p>Chạm để mở thiệp</p>
-                <div class="heart">❤️</div>
+                <H2>Chạm để mở thiệp</H2>
+                <img src="img/door.png" class="heart-img" alt="Wedding Heart Image">
             </div>
         </div>
     </div>
@@ -29,15 +30,19 @@
     <div class="scroll-container">
         <section class="page" id="home">
             <div class="glass-box">
-                    <h1 class="script-font">Wedding Invitation</h1>
-                
+                <h1 class="script-font">Wedding Invitation</h1>
+
                 <div class="reveal-right">
                     <h1 class="script-font">Minh Thông <br> & <br> Thu Thảo</h1>
 
                 </div>
-                
-                    <img src="img/30.JPG" class="hero-img" alt="Wedding Image">
-                
+                <div class="page">
+                    <div class="slideshow-3d">
+                        <img src="img/30.JPG" class="slide-item position-1" alt="Wedding Image">
+                        <img src="img/20.JPG" class="slide-item position-2" alt="Wedding Image">
+                        <img src="img/10.JPG" class="slide-item position-3" alt="Wedding Image">
+                    </div>
+                </div>
                 <div class="invite-text">
                     <H2>Trân trọng kính mời</h2>
                     <h1 id="guest-name" class="guest-name">Quý khách</h1>
@@ -64,8 +69,18 @@
                     <h2 class="script-font" style="font-size: 1.8rem;">&</h2>
                     <h2 class="script-font" style="font-size: 2.5rem;">Hứa Thị Thu Thảo</h2>
                 </div>
-                <img src="img/6.JPG" class="info-img">
 
+                <div class="scroll-frame">
+                    <div class="scroll-container">
+                        <img src="img/5.jpg">
+                        <img src="img/10.jpg">
+                        <img src="img/15.jpg">
+
+                        <img src="img/20.jpg">
+                        <img src="img/25.jpg">
+                        <img src="img/30.jpg">
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -221,6 +236,14 @@
                     <select id="attendance">
                         <option value="yes">Chắc chắn sẽ đến ✨</option>
                         <option value="no">Rất tiếc không thể tham dự 😢</option>
+                    </select>
+
+                    <select id="nguoi">
+                        <option value="1">Số người: 1</option>
+                        <option value="2">Số người: 2</option>
+                        <option value="3">Số người: 3</option>
+                        <option value="4">Số người: 4</option>
+                        <option value="5">Số người: 5</option>
                     </select>
 
                     <textarea id="message" placeholder="Gửi lời chúc lãng mạn tại đây..."></textarea>

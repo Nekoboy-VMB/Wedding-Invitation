@@ -51,10 +51,49 @@ function toggleQR() {
 
 // 3. Hàm gửi RSVP (Gợi ý dùng Google Forms để lưu lời chúc)
 function sendRSVP() {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbx_mSuonF61BfPbrbx6mhy7MoQcTnVt4e9ZXrayomOIA3A0LJ3UzDSyLjy4V9emGsuF/exec'; // Link vừa copy ở Bước 2
+    
     const name = document.getElementById('input-name').value;
-    const msg = document.getElementById('message').value;
-    alert(`Cảm ơn ${name} đã gửi lời chúc: ${msg}`);
-    // Chỗ này bạn có thể dùng Fetch API để gửi dữ liệu lên Google Sheet
+    const attendance = document.getElementById('attendance').value;
+    const guest_count = document.getElementById('nguoi').value;
+    const message = document.getElementById('message').value;
+
+    if(!message.trim()) {
+        alert("Bạn hãy nhập lời chúc cho tụi mình nhé! ❤️");
+        return;
+    }
+
+    const btn = document.querySelector("#rsvp-form .btn");
+    
+    // Bước 1: Thay đổi giao diện nút ngay lập tức
+    btn.innerHTML = '<span class="loader"></span> Đang gửi...';
+    btn.style.opacity = "0.7";
+    btn.disabled = true;
+
+    // Bước 2: Gửi dữ liệu đi
+    fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors', // Mẹo: Dùng no-cors để gửi nhanh hơn (nhưng sẽ không đọc được phản hồi JSON)
+        body: JSON.stringify({
+            "name": name,
+            "attendance": attendance,
+            "guest_count": guest_count,
+            "message": message
+        })
+    })
+    .then(() => {
+        // Bước 3: Thông báo thành công nhanh
+        alert('Cảm ơn ' + name + '! Lời chúc đã được gửi đi thành công. ❤️');
+        btn.innerHTML = "Xác nhận & Gửi lời chúc";
+        btn.style.opacity = "1";
+        btn.disabled = false;
+        document.getElementById('message').value = "";
+    })
+    .catch(error => {
+        console.error('Error!', error.message);
+        btn.innerHTML = "Thử lại";
+        btn.disabled = false;
+    });
 }
 // Thiết lập ngày cưới
 const weddingDate = new Date("May 20, 2026 09:00:00").getTime();
@@ -141,6 +180,7 @@ function sendRSVP() {
     
     const name = document.getElementById('input-name').value;
     const attendance = document.getElementById('attendance').value;
+    const guest_count = document.getElementById('nguoi').value;
     const message = document.getElementById('message').value;
 
     if(!message.trim()) {
@@ -162,6 +202,7 @@ function sendRSVP() {
         body: JSON.stringify({
             "name": name,
             "attendance": attendance,
+            "guest_count": guest_count,
             "message": message
         })
     })
@@ -265,23 +306,12 @@ document.addEventListener('click', enableAutoPlay);
 // mở cửa
 function openDoor() {
     const overlay = document.getElementById('door-overlay');
-    const bgMusic = document.getElementById('bg-music');
-
+    
     overlay.classList.add('door-open');
-
-    if (bgMusic) {
-        bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
-    }
-
-    // Đợi cửa mở xong thì mới kích hoạt hiệu ứng tim bay
     setTimeout(() => {
         overlay.style.display = 'none';
-        
-        // Gọi hàm tạo tim bay ở đây (thay bằng tên hàm tim bay của bạn)
-        if (typeof createHeart === "function") {
-            createHeart();
-        }
-    }, 1200);
+        document.getElementById('bg-music').play();
+    }, 1000); // Thời gian để hiệu ứng xong
 }
 
 // Gán sự kiện click vào ảnh QR khi trang tải xong
@@ -313,3 +343,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+function rotateSlides() {
+    const slides = document.querySelectorAll('.slide-item');
+    const positions = ['position-1', 'position-2', 'position-3'];
+    
+    // Lấy danh sách các class hiện tại của các ảnh
+    let currentClasses = [];
+    slides.forEach(slide => {
+        positions.forEach(p => {
+            if (slide.classList.contains(p)) {
+                currentClasses.push(p);
+            }
+        });
+    });
+
+    // Đẩy class cuối lên đầu để tạo vòng xoay
+    currentClasses.unshift(currentClasses.pop());
+
+    // Cập nhật lại class mới cho từng ảnh
+    slides.forEach((slide, index) => {
+        positions.forEach(p => slide.classList.remove(p));
+        slide.classList.add(currentClasses[index]);
+    });
+}
+
+// Chạy vòng xoay mỗi 3 giây
+setInterval(rotateSlides, 3000);
