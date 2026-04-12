@@ -27,7 +27,7 @@ body, html {
     flex-direction: column;
     justify-content: center; /* Căn giữa theo chiều dọc */
     align-items: center;    /* Căn giữa theo chiều ngang */
-    padding: 50px;
+    padding: 20px;
     box-sizing: border-box;
     text-align: center;
     width: 100vw;
@@ -537,10 +537,10 @@ body, html {
     transform: translateX(0);
 }
 /* Nếu trong một khối có nhiều thẻ p, chúng sẽ hiện lần lượt */
-.reveal p:nth-child(1) { transition-delay: 0.5s; }
-.reveal p:nth-child(2) { transition-delay: 1.0s; }
-.reveal p:nth-child(3) { transition-delay: 1.5s; }
-.reveal p:nth-child(4) { transition-delay: 2.0s; }
+.reveal p:nth-child(1) { transition-delay: 0.3s; }
+.reveal p:nth-child(2) { transition-delay: 0.3s; }
+.reveal p:nth-child(3) { transition-delay: 0.3s; }
+.reveal p:nth-child(4) { transition-delay: 0.3s; }
 
 /* Trễ cho các nút bấm */
 .btn, .gift-btn { transition-delay: 0.5s; }
@@ -681,7 +681,7 @@ body, html {
 
 .page#album .card-content {
     max-width: 350px;
-    padding: 50px;
+    padding: 20px;
 }
 
 @media (max-width: 768px) {

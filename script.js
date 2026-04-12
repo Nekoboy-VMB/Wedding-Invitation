@@ -212,7 +212,7 @@ function createHeart() {
 }
 
 // Cứ 500ms tạo ra 1 trái tim
-setInterval(createHeart, 300);
+setInterval(createHeart, 200);
 // chuyển động
 function handleScrollReveal() {
     const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
