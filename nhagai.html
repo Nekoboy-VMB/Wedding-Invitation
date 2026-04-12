@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Thu Thảo & Minh Thông</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="door-overlay" onclick="openDoor()">
+        <div class="butterflies"></div>
+        <div class="door door-left"></div>
+        <div class="door door-right"></div>
+        <div class="door-content">
+            <div class="envelope">
+                <h1 class="script-font" style="font-size: 2rem; margin-bottom: 10px;">Thu Thảo <br> & <br> Minh Thông
+                </h1>
+                <H2>Chạm để mở thiệp</H2>
+                <img src="img/door.png" class="heart-img" alt="Wedding Heart Image">
+            </div>
+        </div>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="wedding-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="page" id="home">
+        <div class="card-content">
+            <h1 class="script-font">Wedding Invitation</h1>
+            <h1 class="script-font">Thu Thảo <br> & <br> Minh Thông</h1>
+
+            <div class="slideshow-3d">
+                <img src="img/30.JPG" class="slide-item position-1" alt="Wedding Image">
+                <img src="img/20.JPG" class="slide-item position-2" alt="Wedding Image">
+                <img src="img/10.JPG" class="slide-item position-3" alt="Wedding Image">
+            </div>
+            <div class="invite-text">
+                <H2>Trân trọng kính mời</h2>
+                <h1 class="script-font" id="guest-name" class="guest-name">Quý khách</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="page" id="ceremony">
+        <div class="card-content">
+            
+            <div class="details-text">
+                <h1 class="script-font" style="font-size: 3rem;">Nhà gái</h1>
+                <h3>Bà: Nông Thị Phúc </h3>
+                <p style="font-size: 1rem;">Thôn Tam Thành, Xã Tam Giang, Tỉnh Đắk Lắk</p>
+            </div>
+            <div class="details-text">
+                <h1 class="script-font" style="font-size: 3rem;">Nhà trai</h1>
+                    <h3>Ông: Nguyễn Văn Năm</h3>
+                    <h3>Bà: Nguyễn Thị Xuân</h3>
+                    <p style="font-size: 1rem;">Thôn 6A, Xã Eak Nốp, Tỉnh Đắk Lắk</p>
+            </div>
+            <div class="details-text">
+                <H3>Trân Trọng Báo Tin Lễ Vu Quy Của</h3>
+                <h2 class="script-font" style="font-size: 2.5rem;">Hứa Thị Thu Thảo</h2>
+                <h2 class="script-font" style="font-size: 1.8rem;">&</h2>
+                <h2 class="script-font" style="font-size: 2.5rem;">Nguyễn Minh Thông</h2>
+            </div>
+
+            <div class="scroll-frame">
+                <div class="scroll-container">
+                    <img src="img/5.JPG">
+                    <img src="img/10.JPG">
+                    <img src="img/15.JPG">
+
+                    <img src="img/20.JPG">
+                    <img src="img/25.JPG">
+                    <img src="img/30.JPG">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page" id="party">
+        <div class="card-content party-info">
+            <div class="header-text">
+                <h2>THÔNG TIN TIỆC CƯỚI</h2>
+                <p>Tiệc cưới sẽ diễn ra vào lúc:</p>
+            </div>
+
+            <div class="main-time">11:00</div>
+
+            <div class="date-row">
+                <span>Thứ Hai</span>
+                <span class="big-date">18</span>
+                <span>Tháng 5</span>
+            </div>
+
+            <div class="year-text">2026</div>
+
+            <p class="lunar-date">(Nhằm ngày 02/04 năm Bính Ngọ)</p>
+
+            <div class="location-text">
+                <p>Tại tư gia nhà Gái</p>
+            </div>
+
+            <div class="mini-calendar">
+                <div class="month-header">Tháng 5 / 2026</div>
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>CN</th>
+                            <th>T2</th>
+                            <th>T3</th>
+                            <th>T4</th>
+                            <th>T5</th>
+                            <th>T6</th>
+                            <th>T7</th>
+                        </tr>
+                    </thead>
+                    <tbody id="calendar-body">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td>6</td>
+                            <td>7</td>
+                            <td>8</td>
+                            <td>9</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td>13</td>
+                            <td>14</td>
+                            <td>15</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td class="wedding-day">18</td>
+                            <td>19</td>
+                            <td>20</td>
+                            <td>21</td>
+                            <td>22</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td>27</td>
+                            <td>28</td>
+                            <td>29</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>31</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="countdown-container">
+                <h3 class="title">Sắp đến ngày chung đôi</h4>
+                <div id="countdown">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <small>Ngày</small>
+
+                        <class="time-box">
+                            <span id="hours">00</span>
+                            <small>Giờ</small>
+
+                            <class="time-box">
+                                <span id="minutes">00</span>
+                                <small>Phút</small>
+
+                                <class="time-box">
+                                    <span id="seconds">00</span>
+                                    <small>Giây</small>
+                    </div>
+                </div>
+            </div>
+            <div class="add-to-calendar">
+                <a href="nhagai.ics" class="calendar-btn" style="text-decoration: none; display: inline-block;">
+                    📅 Thêm vào lịch điện thoại
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="page" id="map">
+        <div class="card-content">
+            <h3 class="title">Đường đến Tư Gia</h3>
+            <p> Thôn Tam Thành, Xã Tam Giang, Tỉnh Đắk Lắk</p>
+
+            <div class="map-wrapper">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d242.9431473659865!2d108.4043955154999!3d13.02991766871624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTPCsDAxJzQ3LjYiTiAxMDjCsDI0JzE1LjciRQ!5e0!3m2!1svi!2s!4v1776008092027!5m2!1svi!2s"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <a href="https://maps.app.goo.gl/UtTuvhHJd745XAce6" target="_blank" class="btn">Chỉ đường trên Google
+                Maps</a>
+        </div>
+    </section>
+
+    <section class="page" id="rsvp">
+        <div class="card-content">
+            <h3 class="script-font" style="font-size: 3rem;">Xác nhận tham dự</h3>
+            <p style="margin-bottom: 20px; color: #666;">Bạn sẽ tham gia cùng chúng mình chứ?</p>
+
+            <form id="rsvp-form">
+                <input type="text" id="input-name" placeholder="Tên khách mời" readonly
+                    style="background: #f9f9f9; text-align: center; font-weight: bold;">
+
+                <select id="attendance">
+                    <option value="yes">Chắc chắn sẽ đến ✨</option>
+                    <option value="no">Rất tiếc không thể tham dự 😢</option>
+                </select>
+
+                <select id="nguoi">
+                    <option value="1">Số người: 1</option>
+                    <option value="2">Số người: 2</option>
+                    <option value="3">Số người: 3</option>
+                    <option value="4">Số người: 4</option>
+                    <option value="5">Số người: 5</option>
+                </select>
+
+                <textarea id="message" placeholder="Gửi lời chúc lãng mạn tại đây..."></textarea>
+
+                <button type="button" class="btn" onclick="sendRSVP()">Xác nhận & Gửi lời chúc</button>
+            </form>
+
+          
+            <div id="qr-popup" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="toggleQR()">&times;</span>
+                    <h3 class="script-font" style="font-size: 1.8rem; margin-bottom: 10px;">Hộp quà cưới</h3>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px;">
+                        Cảm ơn bạn rất nhiều vì sự quan tâm và tình cảm dành cho chúng mình!
+                    </p>
+
+                    <div class="bank-info-container">
+                        <div class="bank-card">
+                            <img src="img/qr-code.png" alt="Mã QR Chuyển khoản" class="qr-img">
+                            <div class="bank-details">
+                                <p><strong>Ngân hàng:</strong> techcombanh</p>
+                                <p><strong>Số tài khoản:</strong> </p>
+                                <p><strong>Chủ tài khoản:</strong> NGUYEN MINH THONG</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <p style="font-size: 0.8rem; font-style: italic; margin-top: 15px; color: #888;">
+                        (Chạm vào mã QR để phóng to)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="qr-overlay" onclick="toggleZoomQR()"></div>
+
+        </div>
+        </div>
+    </section>
+
+    <section class="page" id="album">
+        <div class="card-content">
+            <h1 class="title">Album Ảnh Cưới</h1>
+            <div class="gallery">
+                <img src="img/1.JPG"> <img src="img/2.JPG"> <img src="img/3.JPG">
+                <img src="img/4.JPG"> <img src="img/5.JPG"> <img src="img/6.JPG">
+                <img src="img/7.JPG"> <img src="img/8.JPG"> <img src="img/9.JPG">
+                <img src="img/10.JPG"> <img src="img/11.JPG"> <img src="img/12.JPG">
+                <img src="img/13.JPG"> <img src="img/14.JPG"> <img src="img/15.JPG">
+                <img src="img/16.JPG"> <img src="img/17.JPG"> <img src="img/18.JPG">
+                <img src="img/19.JPG"> <img src="img/20.JPG"> <img src="img/21.JPG">
+                <img src="img/22.JPG"> <img src="img/23.JPG"> <img src="img/24.JPG">
+                <img src="img/25.JPG"> <img src="img/26.JPG"> <img src="img/27.JPG">
+                <img src="img/28.JPG"> <img src="img/29.JPG"> <img src="img/30.JPG">
+            </div>
+            <footer class="footer-text">
+                <h3>"Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!"</p>
+            </footer>
+        </div>
+    </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
