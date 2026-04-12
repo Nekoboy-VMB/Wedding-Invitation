@@ -305,8 +305,10 @@ document.addEventListener('scroll', enableAutoPlay);
 document.addEventListener('click', enableAutoPlay);
 // mở cửa
 function openDoor() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.body.classList.remove('overlay-locked');
+
     const overlay = document.getElementById('door-overlay');
-    
     overlay.classList.add('door-open');
     setTimeout(() => {
         overlay.style.display = 'none';
@@ -320,6 +322,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
     if (qrImg) {
         qrImg.addEventListener('click', toggleZoomQR);
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('overlay-locked');
 });
 
 document.addEventListener('DOMContentLoaded', () => {

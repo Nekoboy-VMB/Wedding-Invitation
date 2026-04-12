@@ -14,6 +14,12 @@ body, html {
     scroll-behavior: smooth;
 }
 
+body.overlay-locked {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: none;
+}
+
 .scroll-container {
     width: 100%;
     overflow-x: hidden;
@@ -187,17 +193,19 @@ body, html {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 220px;
-    gap: 10px;
-    width: 100%;
+    gap: 20px;
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
     justify-content: center;
     align-items: center;
 }
 
 .gallery img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 20px;
     display: block;
     -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
@@ -817,40 +825,57 @@ body, html {
 }
 .slideshow-3d {
     position: relative;
-    height: 350px; /* Tùy chỉnh theo ảnh của bạn */
+    height: 300px;
     width: 100%;
-    perspective: 1000px; /* Tạo hiệu ứng chiều sâu 3D */
+    max-width: 100%;
+    margin: 0 auto;
+    perspective: 1000px;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .slide-item {
     position: absolute;
-    width: 200px; /* Chiều rộng ảnh */
-    transition: all 0.8s ease-in-out; /* Tốc độ xoay */
-    border-radius: 15px;
-    object-fit: cover;
+    /* Đưa điểm neo về chính giữa khung */
+    top: 50%;
+    left: 50%;
+    /* Mặc định mọi ảnh đều phải tự kéo ngược lại 50% chính nó để vào tâm */
+    width: 150px; /* Bạn có thể tăng lên 200px nếu muốn ảnh to hơn */
+    transition: all 0.8s ease-in-out;
+    border-radius: 20px;       /* Độ bo góc, bạn có thể tăng giảm tùy ý */
+    overflow: hidden;          /* Đảm bảo ảnh bên trong không tràn khỏi góc bo */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Thêm đổ bóng cho ảnh thêm sang */
+    border: 2px solid #fff;
 }
-
+.slide-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* Giúp ảnh luôn lấp đầy khung đã bo góc */
+    display: block;
+}
 /* Ảnh chính ở giữa */
 .position-1 {
     z-index: 3;
-    transform: translateX(0) scale(1.2);
+    /* translate(-50%, -50%) là bắt buộc để căn giữa */
+    transform: translate(-50%, -50%) scale(1.2);
     opacity: 1;
 }
 
 /* Ảnh bên phải */
 .position-2 {
     z-index: 2;
-    transform: translateX(120px) scale(0.8) rotateY(30deg);
+    /* Di chuyển sang phải thêm 120px từ tâm */
+    transform: translate(calc(-50% + 120px), -50%) scale(0.8) rotateY(-30deg);
     opacity: 0.6;
 }
 
 /* Ảnh bên trái */
 .position-3 {
     z-index: 2;
-    transform: translateX(-120px) scale(0.8) rotateY(-30deg);
+    /* Di chuyển sang trái thêm 120px từ tâm */
+    transform: translate(calc(-50% - 120px), -50%) scale(0.8) rotateY(30deg);
     opacity: 0.6;
 }
 /* Đảm bảo thẻ cha không bị biến dạng */
@@ -863,8 +888,8 @@ body, html {
 #ceremony .scroll-frame {
     position: relative !important;
     width: 100%;
-    max-width: 350px; /* Chỉnh lại độ rộng vừa phải */
-    height: 400px !important; /* Độ cao cố định của khung nhìn */
+    max-width: 300px; /* Chỉnh lại độ rộng vừa phải */
+    height: 350px !important; /* Độ cao cố định của khung nhìn */
     margin: 20px auto !important;
     overflow: hidden !important; /* KHÔNG CHO TRÀN RA NGOÀI */
     border: 3px solid #fff;
@@ -877,14 +902,14 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    animation: scrollVerticalOnly 30s linear infinite !important;
+    animation: scrollVerticalOnly 20s linear infinite !important;
 }
 
 #ceremony .scroll-container img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 /* Đổi tên animation để không trùng với bất kỳ cái nào khác */
