@@ -342,46 +342,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showOverlay(src) {
-        const existing = document.querySelector('#image-overlay');
-        if (existing) existing.remove();
+    const existing = document.querySelector('#image-overlay');
+    if (existing) existing.remove();
 
-        const overlay = document.createElement('div');
-        overlay.id = 'image-overlay';
-        overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
-        document.body.appendChild(overlay);
+    const overlay = document.createElement('div');
+    overlay.id = 'image-overlay';
+    // Thêm một cái icon hoặc dòng chữ nhỏ để khách biết là vuốt được
+    overlay.innerHTML = `
+        <img src="${src}" class="zoomed-img">
+        <div style="position:absolute; bottom:20px; color:white; font-size:12px; opacity:0.5;">
+            < Vuốt để xem thêm >
+        </div>
+    `;
+    document.body.appendChild(overlay);
 
-        // Đóng khi click
-        overlay.addEventListener('click', () => overlay.remove());
+    // Click nhẹ thì đóng
+    overlay.addEventListener('click', (e) => {
+        if (e.target.id === 'image-overlay') overlay.remove();
+    });
 
-        // Xử lý Vuốt (Swipe)
-        overlay.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, false);
+    // Xử lý Vuốt
+    overlay.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX; // Dùng clientX cho chính xác hơn screenX
+    }, {passive: true});
 
-        overlay.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
+    overlay.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    }, {passive: true});
 
-        function handleSwipe() {
-            const threshold = 50; // Độ dài vuốt tối thiểu để nhận diện
-            if (touchEndX < touchStartX - threshold) {
-                // Vuốt sang trái -> Ảnh tiếp theo
-                currentIndex = (currentIndex + 1) % images.length;
-                updateImage();
-            }
-            if (touchEndX > touchStartX + threshold) {
-                // Vuốt sang phải -> Ảnh trước đó
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateImage();
-            }
+    function handleSwipe() {
+        const threshold = 40; // Độ nhạy: vuốt 40px là chuyển
+        if (touchEndX < touchStartX - threshold) {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        } else if (touchEndX > touchStartX + threshold) {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
         }
+    }
 
-        function updateImage() {
-            const newSrc = images[currentIndex].src;
-            overlay.querySelector('img').src = newSrc;
-        }
+    function updateImage() {
+        const imgElement = overlay.querySelector('img');
+        imgElement.style.opacity = '0'; // Hiệu ứng mờ dần khi đổi ảnh
+        setTimeout(() => {
+            imgElement.src = images[currentIndex].src;
+            imgElement.style.opacity = '1';
+        }, 200);
+    }
 
+      
         // Thoát bằng phím Esc
         document.addEventListener('keydown', function handleEsc(event) {
             if (event.key === 'Escape') {

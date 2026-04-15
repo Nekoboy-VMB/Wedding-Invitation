@@ -53,7 +53,16 @@ body.overlay-locked {
 .page:not(:first-child) {
     margin-top: -50px;
 }
+#image-overlay {
+    touch-action: none; /* Vô hiệu hóa cuộn trang khi đang xem ảnh */
+    user-select: none;
+    -webkit-user-select: none;
+}
 
+#image-overlay img {
+    pointer-events: none; /* Quan trọng: Để ngón tay chạm xuyên qua ảnh vào cái nền overlay */
+    transition: opacity 0.3s ease;
+}
 .card-content {
     background: white;
     padding: 50px;
