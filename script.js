@@ -396,40 +396,35 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.onclick = (e) => { if (e.target.id === 'image-overlay') closeImg(); };
 
     // Xử lý Vuốt
-    let startX = 0;
-    overlay.ontouchstart = (e) => { startX = e.touches[0].clientX; };
+   let touchStartX = 0;
+let touchEndX = 0;
 
-    overlay.ontouchend = (e) => {
-        let endX = e.changedTouches[0].clientX;
-        let diff = startX - endX;
+// Khi bắt đầu chạm
+overlay.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
 
-        if (Math.abs(diff) > 50) { // Nếu vuốt đủ xa (>50px)
-            if (diff > 0) {
-                // Vuốt sang trái -> Ảnh sau
-                currentIndex = (currentIndex + 1) % images.length;
-            } else {
-                // Vuốt sang phải -> Ảnh trước
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-            }
-            overlay.querySelector('img').src = images[currentIndex].src;
-        }
-    };
+// Khi đang vuốt (Chống giật màn hình)
+overlay.addEventListener('touchmove', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault(); // Chặn cuộn trang khi đang vuốt ảnh
+    }
+}, { passive: false });
 
-    // Chặn mọi hành vi cuộn mặc định của trình duyệt khi đang mở overlay
-    overlay.ontouchmove = (e) => { e.preventDefault(); };
+// Khi buông tay
+overlay.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipeLogic();
+}, { passive: true });
 
-
-    function handleSwipe(e) {
-    // Tính toán độ lệch vuốt
-    let touchEndX = e.changedTouches[0].clientX;
-    const threshold = 40; 
-
+function handleSwipeLogic() {
+    const threshold = 50; // Độ nhạy vuốt
     if (touchEndX < touchStartX - threshold) {
-        // Vuốt sang trái -> Ảnh sau
+        // Vuốt trái -> Tiếp theo
         currentIndex = (currentIndex + 1) % images.length;
-        updateImage(); // Hàm này giờ đã có hiệu ứng fade-out rồi
+        updateImage(); // Đảm bảo gọi hàm có setTimeout và class img-hidden
     } else if (touchEndX > touchStartX + threshold) {
-        // Vuốt sang phải -> Ảnh trước
+        // Vuốt phải -> Quay lại
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
     }
