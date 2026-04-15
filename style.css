@@ -44,7 +44,12 @@ body.overlay-locked {
     min-height: auto;
     padding: 20px;
 }
-
+#image-overlay img {
+    transition: transform 0.3s ease-in-out;
+    max-width: 90%;
+    max-height: 90%;
+    user-select: none; /* Ngăn việc chọn ảnh khi đang vuốt */
+}
 .page:not(:first-child) {
     margin-top: -50px;
 }
@@ -61,7 +66,7 @@ body.overlay-locked {
     align-items: center;
 }
 .script-font {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Great Vibes', cursive !important;
     color: var(--primary-red);
     font-size: 2.5rem;
 }
@@ -99,32 +104,43 @@ body.overlay-locked {
     line-height: 1;
 }
 .countdown-container {
-    margin: 20px 10px;
-    padding: 15px;
-    background: #fff5f5;
-    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.countdown-container .title {
+    font-family: 'Quicksand', sans-serif;
+    color: #8b0000;
+    margin-bottom: 20px;
 }
 
 #countdown {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .time-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--primary-red);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 60px;
+    background: #ffffff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 10px;
+    min-width: 65px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .time-box span {
-    font-size: 1.5rem;
+    display: block;
+    font-size: 1.8rem;
     font-weight: bold;
+    color: #8b0000; /* Màu vàng đồng tinh tế */
+}
+
+.time-box small {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
 }
 
 /* Calendar Style */

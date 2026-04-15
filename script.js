@@ -96,7 +96,7 @@ function sendRSVP() {
     });
 }
 // Thiết lập ngày cưới
-const weddingDate = new Date("May 20, 2026 09:00:00").getTime();
+const weddingDate = new Date(targetWeddingDate).getTime();
 
 const countdownFunction = setInterval(function() {
     const now = new Date().getTime();
@@ -108,7 +108,7 @@ const countdownFunction = setInterval(function() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Hiển thị kết quả
+    // Hiển thị kết quả (thêm số 0 phía trước nếu < 10)
     document.getElementById("days").innerText = days < 10 ? "0" + days : days;
     document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
     document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
@@ -117,12 +117,12 @@ const countdownFunction = setInterval(function() {
     // Nếu hết thời gian
     if (distance < 0) {
         clearInterval(countdownFunction);
-        document.getElementById("countdown").innerHTML = "HÔM NAY LÀ NGÀY CƯỚI!";
+        document.getElementById("countdown").innerHTML = "<h3 style='color:#8b0000'>HÔM NAY LÀ NGÀY CƯỚI!</h3>";
     }
 }, 1000);
 function addToGoogleCalendar() {
     const event = {
-        title: "Lễ Thành Hôn: Minh Thông & Thu Thảo",
+        title: "Lễ Thành Hôn: Thu Thảo & Minh Thông",
         details: "Trân trọng mời bạn đến dự lễ thành hôn và tiệc rượu chung vui cùng gia đình chúng mình!",
         location: "Thôn 6a, xã Ea Knốp, Tỉnh Đắk Lắk",
         start: "20260520T090000", // Định dạng: YYYYMMDDTHHMMSS
@@ -329,25 +329,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.gallery img').forEach(img => {
+    const images = Array.from(document.querySelectorAll('.gallery img'));
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    images.forEach((img, index) => {
         img.addEventListener('click', () => {
-            const existing = document.querySelector('#image-overlay');
-            if (existing) existing.remove();
-
-            const overlay = document.createElement('div');
-            overlay.id = 'image-overlay';
-            overlay.innerHTML = `<img src="${img.src}" alt="${img.alt || 'Ảnh cưới'}" class="zoomed-img">`;
-            document.body.appendChild(overlay);
-
-            overlay.addEventListener('click', () => overlay.remove());
-            document.addEventListener('keydown', function handleEsc(event) {
-                if (event.key === 'Escape') {
-                    overlay.remove();
-                    document.removeEventListener('keydown', handleEsc);
-                }
-            });
+            currentIndex = index;
+            showOverlay(img.src);
         });
     });
+
+    function showOverlay(src) {
+        const existing = document.querySelector('#image-overlay');
+        if (existing) existing.remove();
+
+        const overlay = document.createElement('div');
+        overlay.id = 'image-overlay';
+        overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
+        document.body.appendChild(overlay);
+
+        // Đóng khi click
+        overlay.addEventListener('click', () => overlay.remove());
+
+        // Xử lý Vuốt (Swipe)
+        overlay.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        overlay.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            const threshold = 50; // Độ dài vuốt tối thiểu để nhận diện
+            if (touchEndX < touchStartX - threshold) {
+                // Vuốt sang trái -> Ảnh tiếp theo
+                currentIndex = (currentIndex + 1) % images.length;
+                updateImage();
+            }
+            if (touchEndX > touchStartX + threshold) {
+                // Vuốt sang phải -> Ảnh trước đó
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateImage();
+            }
+        }
+
+        function updateImage() {
+            const newSrc = images[currentIndex].src;
+            overlay.querySelector('img').src = newSrc;
+        }
+
+        // Thoát bằng phím Esc
+        document.addEventListener('keydown', function handleEsc(event) {
+            if (event.key === 'Escape') {
+                overlay.remove();
+                document.removeEventListener('keydown', handleEsc);
+            }
+        });
+    }
 });
 function rotateSlides() {
     const slides = document.querySelectorAll('.slide-item');
