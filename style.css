@@ -72,16 +72,19 @@ body.overlay-locked {
 }
 
 #image-overlay img {
-    max-width: 90vh; /* Giới hạn chiều rộng để không*/
-    max-height: 90vh; /* Giới hạn chiều cao để không bị tràn màn hình */
+    max-width: 90vw;
+    max-height: 90vh;
     object-fit: contain;
     border: 2px solid #fff;
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    pointer-events: none; /* Ngón tay chạm xuyên qua ảnh để nhận diện vuốt */
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out !important;
+    pointer-events: none;
+    /* Tăng thời gian lên một chút và dùng ease-in-out cho mượt */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out !important;
     opacity: 1;
     transform: scale(1);
 }
+
+/* Quan trọng: Class này phải có !important để đè lên trạng thái mặc định */
+
 .img-hidden {
     opacity: 0 !important;
     transform: scale(0.95) !important;

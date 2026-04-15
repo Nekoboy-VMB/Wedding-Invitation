@@ -406,15 +406,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bước 1: Thêm class để ảnh cũ mờ đi
     imgElement.classList.add('img-hidden');
 
-    // Bước 2: Đợi ảnh cũ mờ hẳn (khoảng 400ms) rồi mới thay nguồn ảnh
+    // Bước 2: Đợi ảnh cũ mờ hẳn (400ms)
     setTimeout(() => {
+        // Thay đổi nguồn ảnh
         imgElement.src = images[currentIndex].src;
         
-        // Bước 3: Sau khi thay nguồn, đợi một chút xíu rồi hiện ảnh mới lên
+        // Bước 3: Đợi ảnh mới tải xong hoàn toàn
         imgElement.onload = () => {
-            imgElement.classList.remove('img-hidden');
+            // Thêm một khoảng trễ cực nhỏ (50ms) để hiệu ứng mượt hơn
+            setTimeout(() => {
+                imgElement.classList.remove('img-hidden');
+            }, 50);
         };
     }, 400); 
+
 }
 
       
