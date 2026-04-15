@@ -78,9 +78,13 @@ body.overlay-locked {
     border: 2px solid #fff;
     box-shadow: 0 0 20px rgba(255,255,255,0.2);
     pointer-events: none; /* Ngón tay chạm xuyên qua ảnh để nhận diện vuốt */
-    transition: opacity 0.3s ease, transform 0.3s ease !important;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out !important;
     opacity: 1;
     transform: scale(1);
+}
+.img-hidden {
+    opacity: 0 !important;
+    transform: scale(0.95) !important;
 }
 .card-content {
     background: white;
@@ -963,6 +967,9 @@ body.overlay-locked {
 }
 /*mũi tên cuộn*/
 .scroll-guide {
+    display: block ;
+    visibility: visible ;
+    opacity: 0.6 ;
     position: fixed;
     bottom: 30px;
     left: 50%;
@@ -970,10 +977,12 @@ body.overlay-locked {
     z-index: 98; /* Nằm dưới overlay ảnh nhưng trên trang chính */
     text-align: center;
     color: #8b0000;
-    opacity: 0.6;
     animation: bounce 2s infinite;
     transition: opacity 0.5s ease;
     pointer-events: none; /* Không cản trở việc chạm vào trang web */
+    transition: opacity 0.5s ease, visibility 0.5s ease !important;
+    visibility: visible;
+    opacity: 0.8;
 }
 
 .scroll-guide p { font-size: 12px; margin-top: 5px; text-transform: uppercase; }

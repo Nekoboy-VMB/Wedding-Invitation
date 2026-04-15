@@ -403,18 +403,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateImage() {
     const imgElement = overlay.querySelector('img');
     
-    // 1. Cho ảnh cũ mờ đi
-    imgElement.style.opacity = '0';
-    imgElement.style.transform = 'scale(0.95)'; // Thêm hiệu ứng thu nhỏ nhẹ
+    // Bước 1: Thêm class để ảnh cũ mờ đi
+    imgElement.classList.add('img-hidden');
 
+    // Bước 2: Đợi ảnh cũ mờ hẳn (khoảng 400ms) rồi mới thay nguồn ảnh
     setTimeout(() => {
-        // 2. Thay đổi nguồn ảnh khi đã mờ hẳn
         imgElement.src = images[currentIndex].src;
         
-        // 3. Cho ảnh mới hiện lên
-        imgElement.style.opacity = '1';
-        imgElement.style.transform = 'scale(1)';
-    }, 250); // Thời gian chờ khớp với CSS transition
+        // Bước 3: Sau khi thay nguồn, đợi một chút xíu rồi hiện ảnh mới lên
+        imgElement.onload = () => {
+            imgElement.classList.remove('img-hidden');
+        };
+    }, 400); 
 }
 
       
@@ -454,12 +454,19 @@ function rotateSlides() {
 // Chạy vòng xoay mỗi 3 giây
 setInterval(rotateSlides, 3000);
 // nút cuộn trang//
-window.onscroll = function() {
-    const guide = document.getElementById('scroll-guide');
-    // Nếu cuộn xuống quá 100px hoặc chạm đáy trang thì ẩn đi
-    if (window.scrollY > 100 || (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
-        guide.style.opacity = "0";
-    } else {
-        guide.style.opacity = "0.6";
+// Thay thế toàn bộ đoạn window.onscroll cũ bằng đoạn này
+window.addEventListener('scroll', function() {
+    const guide = document.querySelector('.scroll-guide');
+    if (guide) {
+        let scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollY > 50) { 
+            // Dùng opacity và pointer-events thay vì display để mượt hơn
+            guide.style.opacity = '0';
+            guide.style.pointerEvents = 'none';
+        } else {
+            guide.style.opacity = '0.8';
+            guide.style.pointerEvents = 'auto';
+        }
     }
-};
+}, { passive: true });
