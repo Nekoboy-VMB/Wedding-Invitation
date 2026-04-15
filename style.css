@@ -54,26 +54,27 @@ body.overlay-locked {
     margin-top: -50px;
 }
 #image-overlay {
-    
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Chặn hành động kéo để làm mới (pull-to-refresh) và cuộn trang */
-    touch-action: none; 
-    overscroll-behavior: contain;
+    z-index: 999999; /* Số cực lớn để đè lên tất cả tim bay, menu... */
+    touch-action: none; /* Khóa cuộn trang của trình duyệt */
+    overflow: hidden;
 }
 
-
 #image-overlay img {
-    pointer-events: none; /* Quan trọng: Để ngón tay chạm xuyên qua ảnh vào cái nền overlay */
-    transition: opacity 0.3s ease;
+    max-width: 95%;
+    max-height: 85vh; /* Giới hạn chiều cao để không bị tràn màn hình */
+    object-fit: contain;
+    border: 2px solid #fff;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    pointer-events: none; /* Ngón tay chạm xuyên qua ảnh để nhận diện vuốt */
 }
 .card-content {
     background: white;

@@ -341,34 +341,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function showOverlay(src) {
-    // 1. Khóa cuộn trang chính
-    document.body.style.overflow = 'hidden'; 
+   function showOverlay(src) {
+    // Khóa cuộn trang chính ngay lập tức
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
 
-    const existing = document.querySelector('#image-overlay');
-    if (existing) existing.remove();
+    let overlay = document.getElementById('image-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'image-overlay';
+        document.body.appendChild(overlay);
+    }
 
-    const overlay = document.createElement('div');
-    overlay.id = 'image-overlay';
     overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
-    document.body.appendChild(overlay);
+    overlay.style.display = 'flex';
 
-    // 2. Khi đóng ảnh phải mở lại cuộn trang
-    const closeOverlay = () => {
-        overlay.remove();
-        document.body.style.overflow = 'auto'; // Trả lại khả năng cuộn trang
+    // Đóng ảnh
+    const closeImg = () => {
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+        document.documentElement.style.overflow = 'auto';
     };
 
-    overlay.addEventListener('click', (e) => {
-        if (e.target.id === 'image-overlay' || e.target.tagName === 'IMG') {
-            closeOverlay();
-        }
-    });
+    overlay.onclick = (e) => { if (e.target.id === 'image-overlay') closeImg(); };
 
-    // Thêm preventDefault vào sự kiện vuốt để chặn trình duyệt cuộn dọc
-    overlay.addEventListener('touchmove', (e) => {
-        e.preventDefault(); 
-    }, { passive: false });
+    // Xử lý Vuốt
+    let startX = 0;
+    overlay.ontouchstart = (e) => { startX = e.touches[0].clientX; };
+
+    overlay.ontouchend = (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+
+        if (Math.abs(diff) > 50) { // Nếu vuốt đủ xa (>50px)
+            if (diff > 0) {
+                // Vuốt sang trái -> Ảnh sau
+                currentIndex = (currentIndex + 1) % images.length;
+            } else {
+                // Vuốt sang phải -> Ảnh trước
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+            }
+            overlay.querySelector('img').src = images[currentIndex].src;
+        }
+    };
+
+    // Chặn mọi hành vi cuộn mặc định của trình duyệt khi đang mở overlay
+    overlay.ontouchmove = (e) => { e.preventDefault(); };
+
 
     function handleSwipe() {
         const threshold = 40; // Độ nhạy: vuốt 40px là chuyển
