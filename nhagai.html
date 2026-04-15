@@ -9,6 +9,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&family=Great+Vibes&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="image" href="img/ten-anh-bia-cua-ban.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 
 <body>
@@ -28,10 +32,10 @@
     <audio id="bg-music" loop>
         <source src="wedding-song.mp3" type="audio/mpeg">
     </audio>
-<div id="scroll-guide" class="scroll-guide">
-    <div class="arrow"></div>
-    <p>Cuộn để xem tiếp</p>
-</div>
+    <div id="scroll-guide" class="scroll-guide">
+        <div class="arrow"></div>
+        <p>Cuộn để xem tiếp</p>
+    </div>
     <section class="page" id="home">
         <div class="card-content">
             <h1 class="script-font">Wedding Invitation</h1>
@@ -51,7 +55,7 @@
 
     <section class="page" id="ceremony">
         <div class="card-content">
-            
+
             <div class="details-text">
                 <h1 class="script-font" style="font-size: 3rem;">Nhà gái</h1>
                 <h3>Bà: Nông Thị Phúc </h3>
@@ -59,9 +63,9 @@
             </div>
             <div class="details-text">
                 <h1 class="script-font" style="font-size: 3rem;">Nhà trai</h1>
-                    <h3>Ông: Nguyễn Văn Năm</h3>
-                    <h3>Bà: Nguyễn Thị Xuân</h3>
-                    <p style="font-size: 1rem;">Thôn 6A, Xã Eak Nốp, Tỉnh Đắk Lắk</p>
+                <h3>Ông: Nguyễn Văn Năm</h3>
+                <h3>Bà: Nguyễn Thị Xuân</h3>
+                <p style="font-size: 1rem;">Thôn 6A, Xã Eak Nốp, Tỉnh Đắk Lắk</p>
             </div>
             <div class="details-text">
                 <H3 style="color: #8b0000; font-size: 1.3rem;">Trân Trọng Báo Tin Lễ Vu Quy Của:</h3>
@@ -87,7 +91,7 @@
     <section class="page" id="party">
         <div class="card-content party-info">
             <div class="header-text">
-               <h2 style="color: #8b0000; font-size: 2rem;">THÔNG TIN TIỆC CƯỚI</h2>
+                <h2 style="color: #8b0000; font-size: 2rem;">THÔNG TIN TIỆC CƯỚI</h2>
                 <p style="font-size: 1.5rem;">Tiệc cưới sẽ diễn ra vào lúc:</p>
             </div>
 
@@ -180,33 +184,33 @@
                 </table>
             </div>
             <script> var targetWeddingDate = "May 18, 2026 09:00:00"; </script>
-<script src="js/script.js"></script>
+            <script src="js/script.js"></script>
             <div class="countdown-container">
-   <h3 class="title"; style="color: #8b0000; font-size: 1.5rem;"">Sắp đến ngày chung đôi</h3>
-    <div id="countdown">
-        <div class="time-box">
-            <span id="days">00</span>
-            <small>Ngày</small>
-        </div>
-        <div class="time-box">
-            <span id="hours">00</span>
-            <small>Giờ</small>
-        </div>
-        <div class="time-box">
-            <span id="minutes">00</span>
-            <small>Phút</small>
-        </div>
-        <div class="time-box">
-            <span id="seconds">00</span>
-            <small>Giây</small>
-        </div>
-    </div>
-</div>
-            <div class="add-to-calendar">
-                <a href="nhagai.ics" class="calendar-btn" style="text-decoration: none; display: inline-block;">
-                    📅 Thêm vào lịch điện thoại
-                </a>
+                <h3 class="title" ; style="color: #8b0000; font-size: 1.5rem;"">Sắp đến ngày chung đôi</h3>
+    <div id=" countdown">
+                    <div class="time-box">
+                        <span id="days">00</span>
+                        <small>Ngày</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">00</span>
+                        <small>Giờ</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">00</span>
+                        <small>Phút</small>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">00</span>
+                        <small>Giây</small>
+                    </div>
             </div>
+        </div>
+        <div class="add-to-calendar">
+            <a href="nhagai.ics" class="calendar-btn" style="text-decoration: none; display: inline-block;">
+                📅 Thêm vào lịch điện thoại
+            </a>
+        </div>
         </div>
     </section>
 
@@ -253,7 +257,7 @@
                 <button type="button" class="btn" onclick="sendRSVP()">Xác nhận & Gửi lời chúc</button>
             </form>
 
-          
+
             <div id="qr-popup" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="toggleQR()">&times;</span>

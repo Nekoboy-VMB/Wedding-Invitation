@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
     // Tìm tất cả các khối nội dung chính mà bạn muốn nó chuyển động
     const autoRevealElements = document.querySelectorAll('.card-content, .hero-img, .details-text, .countdown-container, .mini-calendar');
-    
+
     autoRevealElements.forEach((el) => {
         el.classList.add('reveal');
     });
@@ -52,19 +52,19 @@ function toggleQR() {
 // 3. Hàm gửi RSVP (Gợi ý dùng Google Forms để lưu lời chúc)
 function sendRSVP() {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx_mSuonF61BfPbrbx6mhy7MoQcTnVt4e9ZXrayomOIA3A0LJ3UzDSyLjy4V9emGsuF/exec'; // Link vừa copy ở Bước 2
-    
+
     const name = document.getElementById('input-name').value;
     const attendance = document.getElementById('attendance').value;
     const guest_count = document.getElementById('nguoi').value;
     const message = document.getElementById('message').value;
 
-    if(!message.trim()) {
+    if (!message.trim()) {
         alert("Bạn hãy nhập lời chúc cho tụi mình nhé! ❤️");
         return;
     }
 
     const btn = document.querySelector("#rsvp-form .btn");
-    
+
     // Bước 1: Thay đổi giao diện nút ngay lập tức
     btn.innerHTML = '<span class="loader"></span> Đang gửi...';
     btn.style.opacity = "0.7";
@@ -81,24 +81,24 @@ function sendRSVP() {
             "message": message
         })
     })
-    .then(() => {
-        // Bước 3: Thông báo thành công nhanh
-        alert('Cảm ơn ' + name + '! Lời chúc đã được gửi đi thành công. ❤️');
-        btn.innerHTML = "Xác nhận & Gửi lời chúc";
-        btn.style.opacity = "1";
-        btn.disabled = false;
-        document.getElementById('message').value = "";
-    })
-    .catch(error => {
-        console.error('Error!', error.message);
-        btn.innerHTML = "Thử lại";
-        btn.disabled = false;
-    });
+        .then(() => {
+            // Bước 3: Thông báo thành công nhanh
+            alert('Cảm ơn ' + name + '! Lời chúc đã được gửi đi thành công. ❤️');
+            btn.innerHTML = "Xác nhận & Gửi lời chúc";
+            btn.style.opacity = "1";
+            btn.disabled = false;
+            document.getElementById('message').value = "";
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            btn.innerHTML = "Thử lại";
+            btn.disabled = false;
+        });
 }
 // Thiết lập ngày cưới
 const weddingDate = new Date(targetWeddingDate).getTime();
 
-const countdownFunction = setInterval(function() {
+const countdownFunction = setInterval(function () {
     const now = new Date().getTime();
     const distance = weddingDate - now;
 
@@ -130,7 +130,7 @@ function addToGoogleCalendar() {
     };
 
     const googleUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`;
-    
+
     window.open(googleUrl, '_blank');
 }
 function toggleQR() {
@@ -145,7 +145,7 @@ function toggleQR() {
 }
 
 // Đóng modal khi click ra ngoài vùng trắng
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('qr-popup');
     if (event.target == modal) {
         toggleQR();
@@ -177,19 +177,19 @@ window.addEventListener('DOMContentLoaded', (event) => {
 });
 function sendRSVP() {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbx_mSuonF61BfPbrbx6mhy7MoQcTnVt4e9ZXrayomOIA3A0LJ3UzDSyLjy4V9emGsuF/exec'; // Link vừa copy ở Bước 2
-    
+
     const name = document.getElementById('input-name').value;
     const attendance = document.getElementById('attendance').value;
     const guest_count = document.getElementById('nguoi').value;
     const message = document.getElementById('message').value;
 
-    if(!message.trim()) {
+    if (!message.trim()) {
         alert("Bạn hãy nhập lời chúc cho tụi mình nhé! ❤️");
         return;
     }
 
     const btn = document.querySelector("#rsvp-form .btn");
-    
+
     // Bước 1: Thay đổi giao diện nút ngay lập tức
     btn.innerHTML = '<span class="loader"></span> Đang gửi...';
     btn.style.opacity = "0.7";
@@ -206,19 +206,19 @@ function sendRSVP() {
             "message": message
         })
     })
-    .then(() => {
-        // Bước 3: Thông báo thành công nhanh
-        alert('Cảm ơn ' + name + '! Lời chúc đã được gửi đi thành công. ❤️');
-        btn.innerHTML = "Xác nhận & Gửi lời chúc";
-        btn.style.opacity = "1";
-        btn.disabled = false;
-        document.getElementById('message').value = "";
-    })
-    .catch(error => {
-        console.error('Error!', error.message);
-        btn.innerHTML = "Thử lại";
-        btn.disabled = false;
-    });
+        .then(() => {
+            // Bước 3: Thông báo thành công nhanh
+            alert('Cảm ơn ' + name + '! Lời chúc đã được gửi đi thành công. ❤️');
+            btn.innerHTML = "Xác nhận & Gửi lời chúc";
+            btn.style.opacity = "1";
+            btn.disabled = false;
+            document.getElementById('message').value = "";
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            btn.innerHTML = "Thử lại";
+            btn.disabled = false;
+        });
 }
 // hiệu ứng
 function reveal() {
@@ -341,119 +341,119 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-   function showOverlay(src) {
-    // Khóa cuộn trang chính ngay lập tức
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
+    function showOverlay(src) {
+        // Khóa cuộn trang chính ngay lập tức
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
 
-    let overlay = document.getElementById('image-overlay');
-    if (!overlay) {
-        overlay = document.createElement('div');
-        overlay.id = 'image-overlay';
-        document.body.appendChild(overlay);
-    }
+        let overlay = document.getElementById('image-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'image-overlay';
+            document.body.appendChild(overlay);
+        }
 
-    overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
-    overlay.style.display = 'flex';
+        overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
+        overlay.style.display = 'flex';
 
 
-    // Thêm 2 nút điều hướng vào HTML
-    overlay.innerHTML = `
+        // Thêm 2 nút điều hướng vào HTML
+        overlay.innerHTML = `
         <button class="nav-btn prev-btn">&#10094;</button>
         <img src="${src}" class="zoomed-img">
         <button class="nav-btn next-btn">&#10095;</button>
     `;
-    overlay.style.display = 'flex';
+        overlay.style.display = 'flex';
 
-    // Sự kiện cho nút BÊN TRÁI
-    overlay.querySelector('.prev-btn').onclick = (e) => {
-        e.stopPropagation(); // Ngăn việc đóng overlay khi click nút
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateImage();
-    };
+        // Sự kiện cho nút BÊN TRÁI
+        overlay.querySelector('.prev-btn').onclick = (e) => {
+            e.stopPropagation(); // Ngăn việc đóng overlay khi click nút
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        };
 
-    // Sự kiện cho nút BÊN PHẢI
-    overlay.querySelector('.next-btn').onclick = (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage();
-    };
+        // Sự kiện cho nút BÊN PHẢI
+        overlay.querySelector('.next-btn').onclick = (e) => {
+            e.stopPropagation();
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        };
 
-    // Click ra ngoài ảnh (vào nền đen) thì đóng
-    overlay.onclick = (e) => {
-        if (e.target.id === 'image-overlay') {
+        // Click ra ngoài ảnh (vào nền đen) thì đóng
+        overlay.onclick = (e) => {
+            if (e.target.id === 'image-overlay') {
+                overlay.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        };
+        // Đóng ảnh
+        const closeImg = () => {
             overlay.style.display = 'none';
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'auto'; // Mở lại cuộn trang
+            document.documentElement.style.overflow = 'auto';
+        };
+
+        overlay.onclick = (e) => { if (e.target.id === 'image-overlay') closeImg(); };
+
+        // Xử lý Vuốt
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Khi bắt đầu chạm
+        overlay.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].clientX;
+        }, { passive: true });
+
+        // Khi đang vuốt (Chống giật màn hình)
+        overlay.addEventListener('touchmove', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault(); // Chặn cuộn trang khi đang vuốt ảnh
+            }
+        }, { passive: false });
+
+        // Khi buông tay
+        overlay.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipeLogic();
+        }, { passive: true });
+
+        function handleSwipeLogic() {
+            const threshold = 50; // Độ nhạy vuốt
+            if (touchEndX < touchStartX - threshold) {
+                // Vuốt trái -> Tiếp theo
+                currentIndex = (currentIndex + 1) % images.length;
+                updateImage(); // Đảm bảo gọi hàm có setTimeout và class img-hidden
+            } else if (touchEndX > touchStartX + threshold) {
+                // Vuốt phải -> Quay lại
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateImage();
+            }
         }
-    };
-    // Đóng ảnh
-    const closeImg = () => {
-        overlay.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Mở lại cuộn trang
-        document.documentElement.style.overflow = 'auto';
-    };
 
-    overlay.onclick = (e) => { if (e.target.id === 'image-overlay') closeImg(); };
+        function updateImage() {
+            // Tìm trực tiếp cái ảnh đang hiển thị trên màn hình
+            const imgElement = document.querySelector('#image-overlay img');
 
-    // Xử lý Vuốt
-   let touchStartX = 0;
-let touchEndX = 0;
+            if (imgElement) {
+                // Bước 1: Thêm class làm mờ
+                imgElement.classList.add('img-hidden');
 
-// Khi bắt đầu chạm
-overlay.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].clientX;
-}, { passive: true });
-
-// Khi đang vuốt (Chống giật màn hình)
-overlay.addEventListener('touchmove', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault(); // Chặn cuộn trang khi đang vuốt ảnh
-    }
-}, { passive: false });
-
-// Khi buông tay
-overlay.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipeLogic();
-}, { passive: true });
-
-function handleSwipeLogic() {
-    const threshold = 50; // Độ nhạy vuốt
-    if (touchEndX < touchStartX - threshold) {
-        // Vuốt trái -> Tiếp theo
-        currentIndex = (currentIndex + 1) % images.length;
-        updateImage(); // Đảm bảo gọi hàm có setTimeout và class img-hidden
-    } else if (touchEndX > touchStartX + threshold) {
-        // Vuốt phải -> Quay lại
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateImage();
-    }
-}
-
-    function updateImage() {
-    // Tìm trực tiếp cái ảnh đang hiển thị trên màn hình
-    const imgElement = document.querySelector('#image-overlay img');
-    
-    if (imgElement) {
-        // Bước 1: Thêm class làm mờ
-        imgElement.classList.add('img-hidden');
-
-        // Bước 2: Đợi 400ms cho mờ hẳn rồi mới đổi ảnh
-        setTimeout(() => {
-            imgElement.src = images[currentIndex].src;
-            
-            // Bước 3: Khi ảnh mới đã load xong
-            imgElement.onload = () => {
-                // Đợi thêm một nhịp cực ngắn để trình duyệt nhận diện ảnh mới
+                // Bước 2: Đợi 400ms cho mờ hẳn rồi mới đổi ảnh
                 setTimeout(() => {
-                    imgElement.classList.remove('img-hidden');
-                }, 50);
-            };
-        }, 400);
-    }
-}
+                    imgElement.src = images[currentIndex].src;
 
-      
+                    // Bước 3: Khi ảnh mới đã load xong
+                    imgElement.onload = () => {
+                        // Đợi thêm một nhịp cực ngắn để trình duyệt nhận diện ảnh mới
+                        setTimeout(() => {
+                            imgElement.classList.remove('img-hidden');
+                        }, 50);
+                    };
+                }, 400);
+            }
+        }
+
+
         // Thoát bằng phím Esc
         document.addEventListener('keydown', function handleEsc(event) {
             if (event.key === 'Escape') {
@@ -466,7 +466,7 @@ function handleSwipeLogic() {
 function rotateSlides() {
     const slides = document.querySelectorAll('.slide-item');
     const positions = ['position-1', 'position-2', 'position-3'];
-    
+
     // Lấy danh sách các class hiện tại của các ảnh
     let currentClasses = [];
     slides.forEach(slide => {
@@ -491,12 +491,12 @@ function rotateSlides() {
 setInterval(rotateSlides, 3000);
 // nút cuộn trang//
 // Thay thế toàn bộ đoạn window.onscroll cũ bằng đoạn này
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const guide = document.querySelector('.scroll-guide');
     if (guide) {
         let scrollY = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollY > 50) { 
+
+        if (scrollY > 50) {
             // Dùng opacity và pointer-events thay vì display để mượt hơn
             guide.style.opacity = '0';
             guide.style.pointerEvents = 'none';

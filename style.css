@@ -4,7 +4,8 @@
     --cream: #fffaf0;
 }
 
-body, html {
+body,
+html {
     overflow-x: hidden;
     width: 100%;
     margin: 0;
@@ -26,13 +27,15 @@ body.overlay-locked {
 }
 
 .page {
-    min-height:1px;
+    min-height: 1px;
     width: 100%;
     margin: 20px auto;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Căn giữa theo chiều dọc */
-    align-items: center;    /* Căn giữa theo chiều ngang */
+    justify-content: center;
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+    /* Căn giữa theo chiều ngang */
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
@@ -48,20 +51,29 @@ body.overlay-locked {
 .page:not(:first-child) {
     margin-top: -50px;
 }
+
 #image-overlay {
-    position: fixed; /* Cố định so với màn hình */
+    position: fixed;
+    /* Cố định so với màn hình */
     top: 0 !important;
     left: 0 !important;
-    right: 0 !important;   /* Khóa lề phải */
-    bottom: 0 !important;  /* Khóa lề dưới */
-    width: 100vw;          /* Full chiều ngang view-port */
-    height: 100vh;         /* Full chiều dọc view-port */
-    background-color: rgba(0, 0, 0, 0.98); /* Màu đen gần như tuyệt đối */
+    right: 0 !important;
+    /* Khóa lề phải */
+    bottom: 0 !important;
+    /* Khóa lề dưới */
+    width: 100vw;
+    /* Full chiều ngang view-port */
+    height: 100vh;
+    /* Full chiều dọc view-port */
+    background-color: rgba(0, 0, 0, 0.98);
+    /* Màu đen gần như tuyệt đối */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999999;      /* Đè lên mọi thứ */
-    margin: 0 !important;  /* Triệt tiêu mọi lề thừa */
+    z-index: 9999999;
+    /* Đè lên mọi thứ */
+    margin: 0 !important;
+    /* Triệt tiêu mọi lề thừa */
     padding: 0 !important;
     touch-action: none;
 }
@@ -84,6 +96,7 @@ body.overlay-locked {
     opacity: 0 !important;
     transform: scale(0.95) !important;
 }
+
 .nav-btn {
     position: absolute;
     top: 50%;
@@ -101,29 +114,39 @@ body.overlay-locked {
 
 .nav-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    color: #ff9a9e; /* Màu nhấn giống tông thiệp của bạn */
+    color: #ff9a9e;
+    /* Màu nhấn giống tông thiệp của bạn */
 }
 
-.prev-btn { left: 10px; border-radius: 0 5px 5px 0; }
-.next-btn { right: 10px; border-radius: 5px 0 0 5px; }
+.prev-btn {
+    left: 10px;
+    border-radius: 0 5px 5px 0;
+}
+
+.next-btn {
+    right: 10px;
+    border-radius: 5px 0 0 5px;
+}
 
 /* Ẩn nút trên điện thoại nếu bạn chỉ muốn dùng vuốt (tùy chọn) */
 @media (max-width: 768px) {
     .nav-btn {
-        display: none; 
+        display: none;
     }
 }
+
 .card-content {
     background: white;
     padding: 50px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     width: 100%;
     max-width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .script-font {
     font-family: 'Great Vibes', cursive !important;
     color: var(--primary-red);
@@ -138,30 +161,37 @@ body.overlay-locked {
     height: auto;
     object-fit: scale-down;
     border-radius: 10px;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
 }
 
 .hero-img {
     width: 100%;
     max-width: 300px;
     height: auto;
-    border: 10px solid white; /* Tạo viền trắng như khung ảnh */
+    border: 10px solid white;
+    /* Tạo viền trắng như khung ảnh */
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    margin: 20px auto; /* Căn giữa ảnh */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    /* Căn giữa ảnh */
 }
+
 .info-img {
-    width: 100%; /* Ảnh chiếm hết chiều ngang box trắng */
+    width: 100%;
+    /* Ảnh chiếm hết chiều ngang box trắng */
     height: auto;
     border-radius: 10px;
-    margin-bottom: 10px; /* Tạo khoảng trống để viết chữ ở dưới */
+    margin-bottom: 10px;
+    /* Tạo khoảng trống để viết chữ ở dưới */
 }
+
 .details-text {
     font-size: 1rem;
     color: #444;
     line-height: 1;
 }
+
 .countdown-container {
     text-align: center;
     padding: 20px;
@@ -193,7 +223,8 @@ body.overlay-locked {
     display: block;
     font-size: 1.8rem;
     font-weight: bold;
-    color: #8b0000; /* Màu vàng đồng tinh tế */
+    color: #8b0000;
+    /* Màu vàng đồng tinh tế */
 }
 
 .time-box small {
@@ -251,8 +282,10 @@ body.overlay-locked {
     font-size: 10px;
     color: var(--primary-red);
 }
-.btn, .gift-btn {
-   
+
+.btn,
+.gift-btn {
+
     background: var(--primary-red);
     color: white;
     border: none;
@@ -282,8 +315,8 @@ body.overlay-locked {
     object-fit: cover;
     border-radius: 20px;
     display: block;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
 }
 
 .gallery img:hover {
@@ -293,19 +326,22 @@ body.overlay-locked {
 
 .map-wrapper {
     width: 100%;
-    margin-bottom: 20px; /* Tạo khoảng cách dưới bản đồ */
+    margin-bottom: 20px;
+    /* Tạo khoảng cách dưới bản đồ */
     border: 3px solid var(--gold);
     border-radius: 5px;
     overflow: hidden;
 }
+
 #map .btn {
-  
+
     position: relative;
     z-index: 5;
     display: inline-block;
     text-decoration: none;
     text-align: center;
 }
+
 #rsvp-form {
     display: flex;
     flex-direction: column;
@@ -313,7 +349,9 @@ body.overlay-locked {
     width: 100%;
 }
 
-#rsvp-form input, #rsvp-form select, #rsvp-form textarea {
+#rsvp-form input,
+#rsvp-form select,
+#rsvp-form textarea {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -332,7 +370,7 @@ body.overlay-locked {
 }
 
 .gift-btn {
-    
+
     background: transparent;
     border: 2px dashed var(--primary-red);
     color: var(--primary-red);
@@ -340,17 +378,20 @@ body.overlay-locked {
 }
 
 .gift-btn:hover {
-    
+
     background: #fff0f0;
 }
+
 /* Modal cho QR */
 .modal {
     display: none;
     position: fixed;
     z-index: 10;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -361,15 +402,17 @@ body.overlay-locked {
     max-width: 300px;
     border-radius: 10px;
 }
+
 .add-to-calendar {
     margin-top: 15px;
     text-align: center;
 }
 
 .calendar-btn {
-   
+
     background-color: #ffffff;
-    color: #4285F4; /* Màu đặc trưng của Google */
+    color: #4285F4;
+    /* Màu đặc trưng của Google */
     border: 1px solid #4285F4;
     padding: 10px 20px;
     border-radius: 5px;
@@ -384,20 +427,25 @@ body.overlay-locked {
 }
 
 .calendar-btn:hover {
-  
+
     background-color: #4285F4;
     color: white;
     box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
 }
+
 /* Modal cho QR */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 999; 
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Làm nền tối đi */
-    backdrop-filter: blur(5px); /* Làm mờ hậu cảnh */
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Làm nền tối đi */
+    backdrop-filter: blur(5px);
+    /* Làm mờ hậu cảnh */
 }
 
 .modal-content {
@@ -409,12 +457,13 @@ body.overlay-locked {
     border-radius: 20px;
     position: relative;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .close {
     position: absolute;
-    right: 15px; top: 10px;
+    right: 15px;
+    top: 10px;
     font-size: 28px;
     color: #aaa;
     cursor: pointer;
@@ -443,25 +492,34 @@ body.overlay-locked {
     font-size: 0.9rem;
     color: var(--primary-red);
 }
+
 /* CSS cho tính năng phóng to ảnh QR */
 .qr-img {
-    transition: all 0.5s ease; /* Tạo hiệu ứng mượt mà khi phóng to/thu nhỏ */
-    cursor: pointer; /* Hiển thị con trỏ tay khi rê chuột vào */
+    transition: all 0.5s ease;
+    /* Tạo hiệu ứng mượt mà khi phóng to/thu nhỏ */
+    cursor: pointer;
+    /* Hiển thị con trỏ tay khi rê chuột vào */
 }
 
 /* Class sẽ được thêm vào bằng JavaScript khi phóng to */
 .qr-img.zoomed {
-    position: fixed; /* Định vị cố định so với màn hình */
+    position: fixed;
+    /* Định vị cố định so với màn hình */
     top: 40%;
     left: 40%;
-    transform: translate(-30%, -30%) scale(1.5); /* Căn giữa và phóng to 1.5 lần */
-    width: 50vw; /* Chiều rộng chiếm 90% chiều rộng màn hình */
+    transform: translate(-30%, -30%) scale(1.5);
+    /* Căn giữa và phóng to 1.5 lần */
+    width: 50vw;
+    /* Chiều rộng chiếm 90% chiều rộng màn hình */
     height: 50vw;
-    z-index: 1000; /* Nằm trên cùng, trên cả modal */
+    z-index: 1000;
+    /* Nằm trên cùng, trên cả modal */
     border: none;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.8); /* Tạo bóng đổ đậm để nổi bật */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    /* Tạo bóng đổ đậm để nổi bật */
 }
+
 /* Hiệu ứng xoay tròn khi gửi */
 .loader {
     border: 2px solid #f3f3f3;
@@ -475,13 +533,20 @@ body.overlay-locked {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
+
 /* Container chính cho phần tiệc */
 .party-info {
     padding: 50px !important;
-    line-height: 1.2; /* Thu hẹp khoảng cách dòng tổng thể */
+    line-height: 1.2;
+    /* Thu hẹp khoảng cách dòng tổng thể */
 }
 
 .party-info h2 {
@@ -491,7 +556,8 @@ body.overlay-locked {
 }
 
 .party-info p {
-    margin: 2px 0; /* Ép các dòng sát lại nhau */
+    margin: 2px 0;
+    /* Ép các dòng sát lại nhau */
 }
 
 /* Số 11:00 */
@@ -541,6 +607,7 @@ body.overlay-locked {
     font-size: 1.5rem;
     color: #333;
 }
+
 /* hiệu ứng
 /* Trạng thái ban đầu: Ẩn và nằm hơi thấp xuống */
 .reveal {
@@ -554,6 +621,7 @@ body.overlay-locked {
     opacity: 1;
     transform: translateY(0);
 }
+
 .floating-heart {
     position: fixed;
     top: -2vh;
@@ -567,28 +635,37 @@ body.overlay-locked {
 }
 
 @keyframes fall {
-    0% { 
-        transform: translateY(-5vh) translateX(0) rotate(0deg); 
-        opacity: 0; /* Bắt đầu tàng hình */
+    0% {
+        transform: translateY(-5vh) translateX(0) rotate(0deg);
+        opacity: 0;
+        /* Bắt đầu tàng hình */
     }
+
     10% {
-        opacity: 1; /* Hiện rõ dần khi bắt đầu rơi */
+        opacity: 1;
+        /* Hiện rõ dần khi bắt đầu rơi */
     }
+
     90% {
-        opacity: 1; /* Vẫn hiện rõ */
+        opacity: 1;
+        /* Vẫn hiện rõ */
     }
-    100% { 
-        transform: translateY(105vh) translateX(50px) rotate(360deg); 
-        opacity: 0; /* Biến mất khi chạm đáy */
+
+    100% {
+        transform: translateY(105vh) translateX(50px) rotate(360deg);
+        opacity: 0;
+        /* Biến mất khi chạm đáy */
     }
 }
+
 /* chuyển động
 /* Trạng thái mặc định: Ẩn và đẩy xuống dưới một chút */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: all 1s ease-out;
-    visibility: hidden; /* Tránh việc bấm nhầm vào nút đang ẩn */
+    visibility: hidden;
+    /* Tránh việc bấm nhầm vào nút đang ẩn */
 }
 
 .reveal.active {
@@ -620,14 +697,30 @@ body.overlay-locked {
     opacity: 1;
     transform: translateX(0);
 }
+
 /* Nếu trong một khối có nhiều thẻ p, chúng sẽ hiện lần lượt */
-.reveal p:nth-child(1) { transition-delay: 0.3s; }
-.reveal p:nth-child(2) { transition-delay: 0.3s; }
-.reveal p:nth-child(3) { transition-delay: 0.3s; }
-.reveal p:nth-child(4) { transition-delay: 0.3s; }
+.reveal p:nth-child(1) {
+    transition-delay: 0.3s;
+}
+
+.reveal p:nth-child(2) {
+    transition-delay: 0.3s;
+}
+
+.reveal p:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.reveal p:nth-child(4) {
+    transition-delay: 0.3s;
+}
 
 /* Trễ cho các nút bấm */
-.btn, .gift-btn { transition-delay: 0.5s; }
+.btn,
+.gift-btn {
+    transition-delay: 0.5s;
+}
+
 /* cửa */
 #door-overlay {
     position: fixed;
@@ -646,15 +739,22 @@ body.overlay-locked {
     top: 0;
     width: 50%;
     height: 100%;
-    background: #fdf5f5; /* Màu nền cánh cửa (hơi trắng hồng) */
+    background: #fdf5f5;
+    /* Màu nền cánh cửa (hơi trắng hồng) */
     transition: all 1.2s cubic-bezier(0.7, 0, 0.3, 1);
     display: flex;
     align-items: center;
-    border: 0px solid #fdf5f5; /* Viền cửa cho sang */
+    border: 0px solid #fdf5f5;
+    /* Viền cửa cho sang */
 }
 
-.door-left { left: 0; }
-.door-right { right: 0; }
+.door-left {
+    left: 0;
+}
+
+.door-right {
+    right: 0;
+}
 
 /* Nội dung ở giữa cánh cửa */
 .door-content {
@@ -679,15 +779,32 @@ body.overlay-locked {
 }
 
 @keyframes heartbeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Khi mở cửa - Class này sẽ được thêm bằng JS */
-.door-open .door-left { transform: translateX(-100%); }
-.door-open .door-right { transform: translateX(100%); }
-.door-open .door-content { opacity: 0; pointer-events: none; }
+.door-open .door-left {
+    transform: translateX(-100%);
+}
+
+.door-open .door-right {
+    transform: translateX(100%);
+}
+
+.door-open .door-content {
+    opacity: 0;
+    pointer-events: none;
+}
 
 .reveal,
 .reveal-left,
@@ -695,7 +812,7 @@ body.overlay-locked {
 .door,
 .door-content {
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 0.8s ease-out;
+        opacity 0.8s ease-out;
     will-change: transform, opacity;
 }
 
@@ -721,12 +838,15 @@ body.overlay-locked {
         transform: translateY(-5vh) translateX(0) rotate(0deg);
         opacity: 0;
     }
+
     10% {
         opacity: 1;
     }
+
     90% {
         opacity: 1;
     }
+
     100% {
         transform: translateY(105vh) translateX(50px) rotate(360deg);
         opacity: 0;
@@ -798,9 +918,17 @@ body.overlay-locked {
 }
 
 @keyframes heartbeat {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .envelope h2 {
@@ -808,9 +936,17 @@ body.overlay-locked {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes flyOut {
@@ -818,6 +954,7 @@ body.overlay-locked {
         transform: translate(-50%, -50%) rotate(0deg);
         opacity: 1;
     }
+
     100% {
         transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(360deg);
         opacity: 0;
@@ -848,30 +985,46 @@ body.overlay-locked {
     height: auto;
     object-fit: scale-down;
     border-radius: 10px;
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-    
-    opacity: 0; /* Mặc định ẩn hết */
-    animation: slideshow 6s infinite; /* Tăng lên 6s cho 3 ảnh */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+
+    opacity: 0;
+    /* Mặc định ẩn hết */
+    animation: slideshow 6s infinite;
+    /* Tăng lên 6s cho 3 ảnh */
 }
 
 /* Thiết lập delay để các ảnh xuất hiện lần lượt */
-.hero-img.slide:nth-child(1) { animation-delay: 0s; }
-.hero-img.slide:nth-child(2) { animation-delay: 2s; }
-.hero-img.slide:nth-child(3) { animation-delay: 4s; }
+.hero-img.slide:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.hero-img.slide:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.hero-img.slide:nth-child(3) {
+    animation-delay: 4s;
+}
 
 @keyframes slideshow {
+
     /* 0% đến 33% là thời gian ảnh 1 hiển thị (2s đầu của chu kỳ 6s) */
-    0%, 33.33% { 
-        opacity: 1; 
-        z-index: 1; /* Đưa ảnh đang hiện lên trên cùng */
+    0%,
+    33.33% {
+        opacity: 1;
+        z-index: 1;
+        /* Đưa ảnh đang hiện lên trên cùng */
     }
+
     /* Từ 33.34% trở đi thì ẩn đi để nhường chỗ cho ảnh tiếp theo */
-    33.34%, 100% { 
-        opacity: 0; 
+    33.34%,
+    100% {
+        opacity: 0;
         z-index: 0;
     }
 }
+
 .slideshow-3d {
     position: relative;
     height: 300px;
@@ -891,19 +1044,26 @@ body.overlay-locked {
     top: 50%;
     left: 50%;
     /* Mặc định mọi ảnh đều phải tự kéo ngược lại 50% chính nó để vào tâm */
-    width: 150px; /* Bạn có thể tăng lên 200px nếu muốn ảnh to hơn */
+    width: 150px;
+    /* Bạn có thể tăng lên 200px nếu muốn ảnh to hơn */
     transition: all 0.8s ease-in-out;
-    border-radius: 20px;       /* Độ bo góc, bạn có thể tăng giảm tùy ý */
-    overflow: hidden;          /* Đảm bảo ảnh bên trong không tràn khỏi góc bo */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Thêm đổ bóng cho ảnh thêm sang */
+    border-radius: 20px;
+    /* Độ bo góc, bạn có thể tăng giảm tùy ý */
+    overflow: hidden;
+    /* Đảm bảo ảnh bên trong không tràn khỏi góc bo */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    /* Thêm đổ bóng cho ảnh thêm sang */
     border: 2px solid #fff;
 }
+
 .slide-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;         /* Giúp ảnh luôn lấp đầy khung đã bo góc */
+    object-fit: cover;
+    /* Giúp ảnh luôn lấp đầy khung đã bo góc */
     display: block;
 }
+
 /* Ảnh chính ở giữa */
 .position-1 {
     z-index: 3;
@@ -927,9 +1087,11 @@ body.overlay-locked {
     transform: translate(calc(-50% - 120px), -50%) scale(0.8) rotateY(30deg);
     opacity: 0.6;
 }
+
 /* Đảm bảo thẻ cha không bị biến dạng */
 .card-content {
-    display: block; /* Hoặc flex, nhưng phải cẩn thận chiều cao */
+    display: block;
+    /* Hoặc flex, nhưng phải cẩn thận chiều cao */
     position: relative;
 }
 
@@ -937,10 +1099,13 @@ body.overlay-locked {
 #ceremony .scroll-frame {
     position: relative !important;
     width: 100%;
-    max-width: 300px; /* Chỉnh lại độ rộng vừa phải */
-    height: 350px !important; /* Độ cao cố định của khung nhìn */
+    max-width: 300px;
+    /* Chỉnh lại độ rộng vừa phải */
+    height: 350px !important;
+    /* Độ cao cố định của khung nhìn */
     margin: 20px auto !important;
-    overflow: hidden !important; /* KHÔNG CHO TRÀN RA NGOÀI */
+    overflow: hidden !important;
+    /* KHÔNG CHO TRÀN RA NGOÀI */
     border: 3px solid #fff;
     border-radius: 15px;
     background: transparent;
@@ -963,30 +1128,44 @@ body.overlay-locked {
 
 /* Đổi tên animation để không trùng với bất kỳ cái nào khác */
 @keyframes scrollVerticalOnly {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-60%); } /* Điều chỉnh % này để khớp vòng lặp */
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-60%);
+    }
+
+    /* Điều chỉnh % này để khớp vòng lặp */
 }
+
 /*mũi tên cuộn*/
 .scroll-guide {
-    display: block ;
-    visibility: visible ;
-    opacity: 0.6 ;
+    display: block;
+    visibility: visible;
+    opacity: 0.6;
     position: fixed;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 98; /* Nằm dưới overlay ảnh nhưng trên trang chính */
+    z-index: 98;
+    /* Nằm dưới overlay ảnh nhưng trên trang chính */
     text-align: center;
     color: #8b0000;
     animation: bounce 2s infinite;
     transition: opacity 0.5s ease;
-    pointer-events: none; /* Không cản trở việc chạm vào trang web */
+    pointer-events: none;
+    /* Không cản trở việc chạm vào trang web */
     transition: opacity 0.5s ease, visibility 0.5s ease !important;
     visibility: visible;
     opacity: 0.8;
 }
 
-.scroll-guide p { font-size: 12px; margin-top: 5px; text-transform: uppercase; }
+.scroll-guide p {
+    font-size: 12px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
 
 .arrow {
     width: 20px;
@@ -998,7 +1177,20 @@ body.overlay-locked {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
-    40% {transform: translateX(-50%) translateY(-10px);}
-    60% {transform: translateX(-50%) translateY(-5px);}
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
 }
