@@ -54,10 +54,22 @@ body.overlay-locked {
     margin-top: -50px;
 }
 #image-overlay {
-    touch-action: none; /* Vô hiệu hóa cuộn trang khi đang xem ảnh */
-    user-select: none;
-    -webkit-user-select: none;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Chặn hành động kéo để làm mới (pull-to-refresh) và cuộn trang */
+    touch-action: none; 
+    overscroll-behavior: contain;
 }
+
 
 #image-overlay img {
     pointer-events: none; /* Quan trọng: Để ngón tay chạm xuyên qua ảnh vào cái nền overlay */

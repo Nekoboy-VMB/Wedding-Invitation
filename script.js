@@ -342,34 +342,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showOverlay(src) {
+    // 1. Khóa cuộn trang chính
+    document.body.style.overflow = 'hidden'; 
+
     const existing = document.querySelector('#image-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
     overlay.id = 'image-overlay';
-    // Thêm một cái icon hoặc dòng chữ nhỏ để khách biết là vuốt được
-    overlay.innerHTML = `
-        <img src="${src}" class="zoomed-img">
-        <div style="position:absolute; bottom:20px; color:white; font-size:12px; opacity:0.5;">
-            < Vuốt để xem thêm >
-        </div>
-    `;
+    overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
     document.body.appendChild(overlay);
 
-    // Click nhẹ thì đóng
+    // 2. Khi đóng ảnh phải mở lại cuộn trang
+    const closeOverlay = () => {
+        overlay.remove();
+        document.body.style.overflow = 'auto'; // Trả lại khả năng cuộn trang
+    };
+
     overlay.addEventListener('click', (e) => {
-        if (e.target.id === 'image-overlay') overlay.remove();
+        if (e.target.id === 'image-overlay' || e.target.tagName === 'IMG') {
+            closeOverlay();
+        }
     });
 
-    // Xử lý Vuốt
-    overlay.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].clientX; // Dùng clientX cho chính xác hơn screenX
-    }, {passive: true});
-
-    overlay.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].clientX;
-        handleSwipe();
-    }, {passive: true});
+    // Thêm preventDefault vào sự kiện vuốt để chặn trình duyệt cuộn dọc
+    overlay.addEventListener('touchmove', (e) => {
+        e.preventDefault(); 
+    }, { passive: false });
 
     function handleSwipe() {
         const threshold = 40; // Độ nhạy: vuốt 40px là chuyển
