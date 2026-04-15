@@ -44,12 +44,7 @@ body.overlay-locked {
     min-height: auto;
     padding: 20px;
 }
-#image-overlay img {
-    transition: transform 0.3s ease-in-out;
-    max-width: 90%;
-    max-height: 90%;
-    user-select: none; /* Ngăn việc chọn ảnh khi đang vuốt */
-}
+
 .page:not(:first-child) {
     margin-top: -50px;
 }
