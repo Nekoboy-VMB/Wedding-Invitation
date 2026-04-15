@@ -71,18 +71,47 @@ body.overlay-locked {
     max-height: 90vh;
     object-fit: contain;
     border: 2px solid #fff;
-    pointer-events: none;
-    /* Tăng thời gian lên một chút và dùng ease-in-out cho mượt */
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out !important;
+    /* KHÓA CHẶT: Phải có opacity và transition ở đây */
+    touch-action: none !important;
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out !important;
     opacity: 1;
     transform: scale(1);
+    pointer-events: none;
 }
 
-/* Quan trọng: Class này phải có !important để đè lên trạng thái mặc định */
-
+/* Class này sẽ ép ảnh biến mất */
 .img-hidden {
     opacity: 0 !important;
     transform: scale(0.95) !important;
+}
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    font-size: 40px;
+    padding: 20px 15px;
+    cursor: pointer;
+    z-index: 100000000;
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ff9a9e; /* Màu nhấn giống tông thiệp của bạn */
+}
+
+.prev-btn { left: 10px; border-radius: 0 5px 5px 0; }
+.next-btn { right: 10px; border-radius: 5px 0 0 5px; }
+
+/* Ẩn nút trên điện thoại nếu bạn chỉ muốn dùng vuốt (tùy chọn) */
+@media (max-width: 768px) {
+    .nav-btn {
+        display: none; 
+    }
 }
 .card-content {
     background: white;

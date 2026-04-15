@@ -356,6 +356,36 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.innerHTML = `<img src="${src}" class="zoomed-img">`;
     overlay.style.display = 'flex';
 
+
+    // Thêm 2 nút điều hướng vào HTML
+    overlay.innerHTML = `
+        <button class="nav-btn prev-btn">&#10094;</button>
+        <img src="${src}" class="zoomed-img">
+        <button class="nav-btn next-btn">&#10095;</button>
+    `;
+    overlay.style.display = 'flex';
+
+    // Sự kiện cho nút BÊN TRÁI
+    overlay.querySelector('.prev-btn').onclick = (e) => {
+        e.stopPropagation(); // Ngăn việc đóng overlay khi click nút
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    };
+
+    // Sự kiện cho nút BÊN PHẢI
+    overlay.querySelector('.next-btn').onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    };
+
+    // Click ra ngoài ảnh (vào nền đen) thì đóng
+    overlay.onclick = (e) => {
+        if (e.target.id === 'image-overlay') {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    };
     // Đóng ảnh
     const closeImg = () => {
         overlay.style.display = 'none';
@@ -389,37 +419,43 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.ontouchmove = (e) => { e.preventDefault(); };
 
 
-    function handleSwipe() {
-        const threshold = 30; // Độ nhạy: vuốt 40px là chuyển
-        if (touchEndX < touchStartX - threshold) {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateImage();
-        } else if (touchEndX > touchStartX + threshold) {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateImage();
-        }
+    function handleSwipe(e) {
+    // Tính toán độ lệch vuốt
+    let touchEndX = e.changedTouches[0].clientX;
+    const threshold = 40; 
+
+    if (touchEndX < touchStartX - threshold) {
+        // Vuốt sang trái -> Ảnh sau
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage(); // Hàm này giờ đã có hiệu ứng fade-out rồi
+    } else if (touchEndX > touchStartX + threshold) {
+        // Vuốt sang phải -> Ảnh trước
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
     }
+}
 
     function updateImage() {
-    const imgElement = overlay.querySelector('img');
+    // Tìm trực tiếp cái ảnh đang hiển thị trên màn hình
+    const imgElement = document.querySelector('#image-overlay img');
     
-    // Bước 1: Thêm class để ảnh cũ mờ đi
-    imgElement.classList.add('img-hidden');
+    if (imgElement) {
+        // Bước 1: Thêm class làm mờ
+        imgElement.classList.add('img-hidden');
 
-    // Bước 2: Đợi ảnh cũ mờ hẳn (400ms)
-    setTimeout(() => {
-        // Thay đổi nguồn ảnh
-        imgElement.src = images[currentIndex].src;
-        
-        // Bước 3: Đợi ảnh mới tải xong hoàn toàn
-        imgElement.onload = () => {
-            // Thêm một khoảng trễ cực nhỏ (50ms) để hiệu ứng mượt hơn
-            setTimeout(() => {
-                imgElement.classList.remove('img-hidden');
-            }, 50);
-        };
-    }, 400); 
-
+        // Bước 2: Đợi 400ms cho mờ hẳn rồi mới đổi ảnh
+        setTimeout(() => {
+            imgElement.src = images[currentIndex].src;
+            
+            // Bước 3: Khi ảnh mới đã load xong
+            imgElement.onload = () => {
+                // Đợi thêm một nhịp cực ngắn để trình duyệt nhận diện ảnh mới
+                setTimeout(() => {
+                    imgElement.classList.remove('img-hidden');
+                }, 50);
+            };
+        }, 400);
+    }
 }
 
       
