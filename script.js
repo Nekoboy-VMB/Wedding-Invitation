@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function handleSwipe() {
-        const threshold = 40; // Độ nhạy: vuốt 40px là chuyển
+        const threshold = 30; // Độ nhạy: vuốt 40px là chuyển
         if (touchEndX < touchStartX - threshold) {
             currentIndex = (currentIndex + 1) % images.length;
             updateImage();
@@ -401,13 +401,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateImage() {
-        const imgElement = overlay.querySelector('img');
-        imgElement.style.opacity = '0'; // Hiệu ứng mờ dần khi đổi ảnh
-        setTimeout(() => {
-            imgElement.src = images[currentIndex].src;
-            imgElement.style.opacity = '1';
-        }, 200);
-    }
+    const imgElement = overlay.querySelector('img');
+    
+    // 1. Cho ảnh cũ mờ đi
+    imgElement.style.opacity = '0';
+    imgElement.style.transform = 'scale(0.95)'; // Thêm hiệu ứng thu nhỏ nhẹ
+
+    setTimeout(() => {
+        // 2. Thay đổi nguồn ảnh khi đã mờ hẳn
+        imgElement.src = images[currentIndex].src;
+        
+        // 3. Cho ảnh mới hiện lên
+        imgElement.style.opacity = '1';
+        imgElement.style.transform = 'scale(1)';
+    }, 250); // Thời gian chờ khớp với CSS transition
+}
 
       
         // Thoát bằng phím Esc
@@ -445,3 +453,13 @@ function rotateSlides() {
 
 // Chạy vòng xoay mỗi 3 giây
 setInterval(rotateSlides, 3000);
+// nút cuộn trang//
+window.onscroll = function() {
+    const guide = document.getElementById('scroll-guide');
+    // Nếu cuộn xuống quá 100px hoặc chạm đáy trang thì ẩn đi
+    if (window.scrollY > 100 || (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+        guide.style.opacity = "0";
+    } else {
+        guide.style.opacity = "0.6";
+    }
+};
